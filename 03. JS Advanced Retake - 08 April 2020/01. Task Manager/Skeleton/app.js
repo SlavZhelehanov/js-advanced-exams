@@ -29,6 +29,6 @@ function solve() {
             e.target.remove();
             article.querySelector('.flex').innerHTML += `<button class="orange">Finish</button>`;
             yellow.querySelectorAll('div')[1].appendChild(article);
-        }
+        } else if (e.target.classList.contains("red")) e.target.parentNode.parentNode.remove();
     });
 }
