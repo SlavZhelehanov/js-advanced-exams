@@ -31,4 +31,14 @@ function solve() {
             yellow.querySelectorAll('div')[1].appendChild(article);
         } else if (e.target.classList.contains("red")) e.target.parentNode.parentNode.remove();
     });
+
+    yellow.querySelectorAll("div")[1].addEventListener("click", e => {
+        if (e.target.classList.contains("red")) e.target.parentNode.parentNode.remove();
+        else if (e.target.classList.contains("orange")) {
+            const article = e.target.parentNode.parentNode;
+
+            article.querySelector('.flex').remove();
+            green.querySelectorAll('div')[1].appendChild(article);
+        }
+    });
 }
