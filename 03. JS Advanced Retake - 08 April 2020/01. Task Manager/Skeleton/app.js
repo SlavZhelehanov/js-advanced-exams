@@ -21,4 +21,14 @@ function solve() {
 </article>`;
         }
     });
+
+    orange.querySelectorAll("div")[1].addEventListener("click", e => {
+        if (e.target.classList.contains("green")) {
+            const article = e.target.parentNode.parentNode;
+
+            e.target.remove();
+            article.querySelector('.flex').innerHTML += `<button class="orange">Finish</button>`;
+            yellow.querySelectorAll('div')[1].appendChild(article);
+        }
+    });
 }
