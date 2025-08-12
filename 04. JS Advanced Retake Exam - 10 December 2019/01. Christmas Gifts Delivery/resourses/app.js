@@ -14,4 +14,14 @@ function solution() {
             input.value = '';
         }
     });
+
+    listOfGifts.querySelector('ul').addEventListener('click', e => {
+        if (e.target.id === 'sendButton') {
+            const li = e.target.parentNode;
+
+            li.querySelector('#sendButton').remove();
+            li.querySelector('#discardButton').remove();
+            sentGifts.querySelector('ul').appendChild(li);
+        }
+    });
 }
