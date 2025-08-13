@@ -42,4 +42,27 @@ describe("streamingServiceSelector Tests", function () {
             expect(result).to.equal("Other available platforms are: Netflix, Disney+.");
         });
     });
+	
+
+    describe("contentRating()", function () {
+        it("should throw error for invalid runtime", function () {
+            expect(() => streamingServiceSelector.contentRating(-90, 8))
+                .to.throw("Invalid runtime or rating.");
+        });
+
+        it("should throw error for invalid viewer rating", function () {
+            expect(() => streamingServiceSelector.contentRating(120, 15))
+                .to.throw("Invalid runtime or rating.");
+        });
+
+        it("should return highly rated message for rating >= 7", function () {
+            const result = streamingServiceSelector.contentRating(120, 8);
+            expect(result).to.equal("This content is highly rated (8/10) and has a runtime of 2.00 hours. Enjoy your watch!");
+        });
+
+        it("should return lower rated message for rating < 7", function () {
+            const result = streamingServiceSelector.contentRating(90, 6);
+            expect(result).to.equal("This content has a lower rating (6/10) and runs for 1.50 hours. You might want to check reviews first.");
+        });
+    });
 });
