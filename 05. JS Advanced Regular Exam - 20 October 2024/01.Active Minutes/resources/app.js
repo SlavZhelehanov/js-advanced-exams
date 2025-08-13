@@ -8,6 +8,7 @@ function solve() {
     const date = document.getElementById("date");
     const addActivity = document.getElementById("add-activity");
     const previewActivity = document.getElementById("preview-activity");
+    const activitiesTable = document.getElementById("activities-table");
 
     addActivity.addEventListener("click", e => {
         e.preventDefault();
@@ -45,6 +46,20 @@ function solve() {
             calories.value = pCalories.textContent.split("Calories: ")[1];
             duration.value = pDuration.textContent.split(" ")[1];
             date.value = pDate.textContent.split("Date: ")[1];
+            addActivity.disabled = false;
+            li.remove();
+        } else if (e.target.classList.contains("next-btn")) {
+            const li = e.target.parentNode.parentNode;
+            const [pActivity, pIntesity, pDuration, pDate, pCalories] = li.querySelectorAll('article>p');
+
+            activitiesTable.innerHTML += `<tr>
+<td class="type-cell">${pActivity.textContent.split(" ")[1]}</td>
+<td class="duration-cell">${pDuration.textContent.split(" ")[1]}</td>
+<td class="calories-cell">${pCalories.textContent.split(" ")[1]}</td>
+<td class="date-cell">${pDate.textContent.split(" ")[1]}</td>
+<td class="intensity-cell">${pIntesity.textContent.split(" ")[1]}</td>
+<td class="btn-cell"><button class="delete-btn">Delete</button></td>
+</tr>`;
             addActivity.disabled = false;
             li.remove();
         }
