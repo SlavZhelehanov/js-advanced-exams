@@ -20,4 +20,26 @@ describe("streamingServiceSelector Tests", function () {
             expect(result).to.equal("You can watch this Action Movie on Netflix. Enjoy your Action-filled experience!");
         });
     });
+
+    describe("availablePlatforms()", function () {
+        it("should throw error if platforms is not an array", function () {
+            expect(() => streamingServiceSelector.availablePlatforms("Netflix", 0))
+                .to.throw("Invalid platform selection.");
+        });
+
+        it("should throw error if index is not integer", function () {
+            expect(() => streamingServiceSelector.availablePlatforms(["Netflix", "HBO"], "0"))
+                .to.throw("Invalid platform selection.");
+        });
+
+        it("should throw error if index is out of bounds", function () {
+            expect(() => streamingServiceSelector.availablePlatforms(["Netflix", "HBO"], 5))
+                .to.throw("Invalid platform selection.");
+        });
+
+        it("should return correct remaining platforms", function () {
+            const result = streamingServiceSelector.availablePlatforms(["Netflix", "HBO", "Disney+"], 1);
+            expect(result).to.equal("Other available platforms are: Netflix, Disney+.");
+        });
+    });
 });
