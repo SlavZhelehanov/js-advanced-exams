@@ -92,12 +92,12 @@ class Hotel {
 // console.log(hotel.showAvailableRooms());
 
 // Input 4
-let hotel = new Hotel(500);
-
-console.log(hotel.restockSupplies(["Soap 100 50", "Towels 20 100", "Shampoo 50 75"]));
-
-console.log(hotel.addRoomType("Deluxe Suite", ["Soap 5", "Towels 2"], 200));
-console.log(hotel.addRoomType("Standard Room", ["Soap 2", "Towels 1"], 100));
-console.log(hotel.showAvailableRooms());
-console.log(hotel.bookRoom("Apartment"));
-console.log(hotel.bookRoom("Deluxe Suite"));
+// let hotel = new Hotel(500);
+//
+// console.log(hotel.restockSupplies(["Soap 100 50", "Towels 20 100", "Shampoo 50 75"]));
+//
+// console.log(hotel.addRoomType("Deluxe Suite", ["Soap 5", "Towels 2"], 200));
+// console.log(hotel.addRoomType("Standard Room", ["Soap 2", "Towels 1"], 100));
+// console.log(hotel.showAvailableRooms());
+// console.log(hotel.bookRoom("Apartment"));
+// console.log(hotel.bookRoom("Deluxe Suite"));
