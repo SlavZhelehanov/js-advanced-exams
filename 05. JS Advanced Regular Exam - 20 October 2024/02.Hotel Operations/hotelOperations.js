@@ -47,6 +47,25 @@ class Hotel {
         }
         return output.join("\n");
     }
+
+    bookRoom(roomType) {
+        if (!this.roomAvailability.hasOwnProperty(roomType)) return `There is no ${roomType} available, would you like to book another room?`;
+
+        const roomData = this.roomAvailability[roomType];
+        const neededSupplies = roomData.neededSupplies;
+
+        for (let supply of neededSupplies) {
+            let [supplyName, supplyQtyStr] = supply.split(" ");
+            let supplyQty = parseInt(supplyQtyStr, 10);
+
+            if (!this.supplyStock.hasOwnProperty(supplyName) || this.supplyStock[supplyName] < supplyQty) {
+                return `We are currently unable to accommodate your request for ${roomType}, sorry for the inconvenience.`;
+            }
+        }
+
+        // If everything is available
+        return `Your booking for ${roomType} has been confirmed! The price is $${roomData.pricePerNight} per night.`;
+    }
 }
 
 //Input 1
@@ -72,3 +91,13 @@ class Hotel {
 // console.log(hotel.addRoomType("Standard Room", ["Soap 2", "Towels 1"], 100));
 // console.log(hotel.showAvailableRooms());
 
+// Input 4
+let hotel = new Hotel(500);
+
+console.log(hotel.restockSupplies(["Soap 100 50", "Towels 20 100", "Shampoo 50 75"]));
+
+console.log(hotel.addRoomType("Deluxe Suite", ["Soap 5", "Towels 2"], 200));
+console.log(hotel.addRoomType("Standard Room", ["Soap 2", "Towels 1"], 100));
+console.log(hotel.showAvailableRooms());
+console.log(hotel.bookRoom("Apartment"));
+console.log(hotel.bookRoom("Deluxe Suite"));
