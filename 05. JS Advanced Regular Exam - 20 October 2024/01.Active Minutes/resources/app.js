@@ -34,4 +34,19 @@ function solve() {
             addActivity.disabled = true;
         }
     });
+
+    previewActivity.addEventListener("click", e => {
+        if (e.target.classList.contains("edit-btn")) {
+            const li = e.target.parentNode.parentNode;
+            const [pActivity, pIntesity, pDuration, pDate, pCalories] = li.querySelectorAll('article>p');
+
+            activityType.value = pActivity.textContent.split("Activity: ")[1];
+            intensity.value = pIntesity.textContent.split("Intensity: ")[1];
+            calories.value = pCalories.textContent.split("Calories: ")[1];
+            duration.value = pDuration.textContent.split(" ")[1];
+            date.value = pDate.textContent.split("Date: ")[1];
+            addActivity.disabled = false;
+            li.remove();
+        }
+    });
 }
