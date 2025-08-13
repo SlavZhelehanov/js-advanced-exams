@@ -64,4 +64,8 @@ function solve() {
             li.remove();
         }
     });
+
+    activitiesTable.addEventListener("click", e => {
+        if (e.target.classList.contains("delete-btn")) e.target.parentNode.parentNode.remove();
+    });
 }
