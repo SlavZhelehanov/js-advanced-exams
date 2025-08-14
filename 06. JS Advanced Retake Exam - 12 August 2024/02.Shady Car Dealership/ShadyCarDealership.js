@@ -36,6 +36,18 @@ class ShadyCarDealership {
             return `${model} (${foundCar.year}) was sold for ${soldPrice.toFixed(2)}$`;
         }
     }
+
+    prepareCarForSale(model) {
+        let foundCar = this.availableCars.find(car => car.model === model);
+
+        if (!foundCar) {
+            return(`${model} was not found for preparation!`);
+        } else {
+            foundCar.mileage *= 0.5; // Reduce mileage by 50%
+            foundCar.price *= 1.3;   // Increase price by 30%
+            return `${model} (${foundCar.year}) is prepared for sale with ${foundCar.mileage.toFixed(0)} km. - ${foundCar.price.toFixed(2)}$`;
+        }
+    }
 }
 
 // Input 1
@@ -53,3 +65,14 @@ class ShadyCarDealership {
 // console.log(dealership.addCar('Toyota Yaris', 2015, 80000, 18000));
 // console.log(dealership.prepareCarForSale('Honda CR-V'));
 // console.log(dealership.prepareCarForSale('Honda Jazz'));
+
+// Input 3
+// const dealership = new ShadyCarDealership('Shady Motors');
+// console.log(dealership.addCar('Honda CR-V', 2010, 120000, 15000));
+// console.log(dealership.addCar('BMW X3', 2005, 220000, 9000));
+// console.log(dealership.addCar('Toyota Yaris', 2015, 80000, 18000));
+// console.log(dealership.prepareCarForSale('Honda CR-V'));
+// console.log(dealership.prepareCarForSale('BMW X3'));
+// console.log(dealership.sellCar('Honda CR-V', 2012));
+// console.log(dealership.sellCar('BMW X3', 2012));
+// console.log(dealership.sellCar('Toyota Yaris', 2012));
