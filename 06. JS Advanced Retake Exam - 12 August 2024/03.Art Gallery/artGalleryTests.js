@@ -23,4 +23,28 @@ describe("artGallery Tests", function () {
             expect(() => artGallery.addArtwork("Mona Lisa", "30 x 40", "Da Vinci")).to.throw("This artist is not allowed in the gallery!");
         });
     });
+
+    describe("calculateCosts()", function () {
+        it("should calculate total cost without sponsor", function () {
+            const result = artGallery.calculateCosts(1000, 500, false);
+            expect(result).to.equal("Exhibition and insurance costs are 1500$.");
+        });
+
+        it("should calculate total cost with sponsor discount", function () {
+            const result = artGallery.calculateCosts(1000, 500, true);
+            expect(result).to.equal("Exhibition and insurance costs are 1350$, reduced by 10% with the help of a donation from your sponsor.");
+        });
+
+        it("should throw error if exhibitionCosts is not a number", function () {
+            expect(() => artGallery.calculateCosts("1000", 500, false)).to.throw("Invalid Information!");
+        });
+
+        it("should throw error if insuranceCosts is negative", function () {
+            expect(() => artGallery.calculateCosts(1000, -100, false)).to.throw("Invalid Information!");
+        });
+
+        it("should throw error if sponsor is not boolean", function () {
+            expect(() => artGallery.calculateCosts(1000, 500, "yes")).to.throw("Invalid Information!");
+        });
+    });
 });
