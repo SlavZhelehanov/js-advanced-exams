@@ -47,4 +47,24 @@ describe("artGallery Tests", function () {
             expect(() => artGallery.calculateCosts(1000, 500, "yes")).to.throw("Invalid Information!");
         });
     });
+
+    describe("organizeExhibits()", function () {
+        it("should return correct message when artworks per space >= 5", function () {
+            const result = artGallery.organizeExhibits(50, 10);
+            expect(result).to.equal("You have 10 display spaces with 5 artworks in each space.");
+        });
+
+        it("should return correct message when artworks per space < 5", function () {
+            const result = artGallery.organizeExhibits(20, 10);
+            expect(result).to.equal("There are only 2 artworks in each display space, you can add more artworks.");
+        });
+
+        it("should throw error if artworksCount is not a number", function () {
+            expect(() => artGallery.organizeExhibits("20", 10)).to.throw("Invalid Information!");
+        });
+
+        it("should throw error if displaySpacesCount is <= 0", function () {
+            expect(() => artGallery.organizeExhibits(20, 0)).to.throw("Invalid Information!");
+        });
+    });
 });
