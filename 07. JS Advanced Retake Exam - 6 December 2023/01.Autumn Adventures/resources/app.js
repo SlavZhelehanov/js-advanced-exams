@@ -26,6 +26,21 @@ function solve() {
             addBtn.disabled = true;
         }
     });
+
+    checkList.addEventListener('click', e => {
+        if (e.target.classList.contains('edit-btn')) {
+            const li = e.target.parentNode;
+            const [pDateAndTime, pPlace, pEventName, pEmail] = li.querySelectorAll('p');
+
+            time.value = pDateAndTime.textContent.split(' ')[3];
+            date.value = pDateAndTime.textContent.split(' ')[1];
+            place.value = pPlace.textContent.split(' ')[1];
+            eventName.value = pEventName.textContent.split(' ')[1];
+            email.value = pEmail.textContent.split(' ')[1];
+            addBtn.disabled = false;
+            li.remove();
+        }
+    });
 }
 
 
