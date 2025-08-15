@@ -7,6 +7,8 @@ function solve() {
     const finishedList = document.querySelector('#finished-list');
     const clear = document.querySelector('#clear');
 
+    let inputsForEdit = [];
+
     addBtn.addEventListener('click', e => {
         e.preventDefault();
 
@@ -21,10 +23,16 @@ function solve() {
 <button class="edit-btn">Edit</button>
 <button class="continue-btn">Continue</button>
 </li>`;
+            inputsForEdit = [];
+            inputsForEdit.push(time.value);
             time.value = '';
+            inputsForEdit.push(date.value);
             date.value = '';
+            inputsForEdit.push(place.value);
             place.value = '';
+            inputsForEdit.push(eventName.value);
             eventName.value = '';
+            inputsForEdit.push(email.value);
             email.value = '';
             addBtn.disabled = true;
         }
@@ -35,13 +43,14 @@ function solve() {
             const li = e.target.parentNode;
             const [pDateAndTime, pPlace, pEventName, pEmail] = li.querySelectorAll('p');
 
-            time.value = pDateAndTime.textContent.split(' ')[3];
-            date.value = pDateAndTime.textContent.split(' ')[1];
-            place.value = pPlace.textContent.split(' ')[1];
-            eventName.value = pEventName.textContent.split(' ')[1];
-            email.value = pEmail.textContent.split(' ')[1];
+            time.value = inputsForEdit.shift();//pDateAndTime.textContent.split(' ')[3];
+            date.value = inputsForEdit.shift();//pDateAndTime.textContent.split(' ')[1];
+            place.value = inputsForEdit.shift();//pPlace.textContent.split(' ')[1];
+            eventName.value = inputsForEdit.shift();//pEventName.textContent.split(' ')[1];
+            email.value = inputsForEdit.shift();//pEmail.textContent.split(' ')[1];
             addBtn.disabled = false;
             li.remove();
+            inputsForEdit = [];
         } else if (e.target.classList.contains('continue-btn')) {
             const li = e.target.parentNode;
 
@@ -50,6 +59,7 @@ function solve() {
             li.innerHTML += `<button class="finished-btn">Move to Finished</button>`;
             upcomingList.appendChild(li);
             addBtn.disabled = false;
+            inputsForEdit = [];
         }
     });
 
@@ -59,12 +69,14 @@ function solve() {
 
             li.querySelector('.finished-btn').remove();
             finishedList.appendChild(li);
+            inputsForEdit = [];
         }
     });
 
     clear.addEventListener('click', e => {
         finishedList.innerHTML = '';
         addBtn.disabled = false;
+        inputsForEdit = [];
     });
 }
 
