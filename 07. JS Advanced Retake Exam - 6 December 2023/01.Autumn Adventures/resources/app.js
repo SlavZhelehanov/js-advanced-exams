@@ -3,6 +3,7 @@ window.addEventListener('load', solve);
 function solve() {
     const [time, date, place, eventName, email, addBtn] = document.querySelectorAll('input');
     const checkList = document.querySelector('#check-list');
+    const upcomingList = document.querySelector('#upcoming-list');
 
     addBtn.addEventListener('click', e => {
         e.preventDefault();
@@ -39,6 +40,14 @@ function solve() {
             email.value = pEmail.textContent.split(' ')[1];
             addBtn.disabled = false;
             li.remove();
+        } else if (e.target.classList.contains('continue-btn')) {
+            const li = e.target.parentNode;
+
+            li.querySelector('.edit-btn').remove();
+            li.querySelector('.continue-btn').remove();
+            li.innerHTML += `<button class="finished-btn">Move to Finished</button>`;
+            upcomingList.appendChild(li);
+            addBtn.disabled = false;
         }
     });
 }

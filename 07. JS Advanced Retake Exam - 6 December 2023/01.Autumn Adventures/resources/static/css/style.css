@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
-body{
+
+body {
     background-image: url(../img/pexels-lukas-628241.jpg);
     background-attachment: fixed;
     background-size: cover;
     font-family: 'Kaushan Script', cursive;
 }
 
-#wrapper{
+#wrapper {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -24,21 +25,22 @@ body{
     background-color: rgba(240, 248, 255, 0.753);
     margin: 20px;
     border-radius: 10px;
-    -webkit-box-shadow: 6px 19px 16px 5px rgba(0,0,0,0.58); 
-    box-shadow: 6px 19px 16px 5px rgba(0,0,0,0.58);
+    -webkit-box-shadow: 6px 19px 16px 5px rgba(0, 0, 0, 0.58);
+    box-shadow: 6px 19px 16px 5px rgba(0, 0, 0, 0.58);
 }
 
-#form>p, #first-field>p, #second-field>p, #third-field>p {
+#form > p, #first-field > p, #second-field > p, #third-field > p {
     border-bottom: 1px solid black;
     font-weight: 800;
     font-size: 16px;
 }
 
-body >h1{
+body > h1 {
     text-align: center;
     margin-bottom: -105px;
     font-size: 50px;
 }
+
 form {
     display: flex;
     align-items: center;
@@ -46,21 +48,23 @@ form {
     flex-direction: column;
     gap: 8px;
 }
-#add-btn, .edit-btn,.continue-btn, .finished-btn,#clear{
+
+#add-btn, .edit-btn, .continue-btn, .finished-btn, #clear {
     font-family: 'Kaushan Script', cursive;
     background-color: bisque;
     border: none;
-    -webkit-box-shadow: 0px 0px 27px -2px #000000; 
+    -webkit-box-shadow: 0px 0px 27px -2px #000000;
     box-shadow: 0px 0px 27px -2px #000000;
     border-radius: 3px;
 }
 
-.edit-btn,.continue-btn{
+.edit-btn, .continue-btn {
     margin-right: 20px;
     scale: 1.2;
 
 }
-#add-btn:hover , .edit-btn:hover , .continue-btn:hover, #clear:hover{
+
+#add-btn:hover, .edit-btn:hover, .continue-btn:hover, #clear:hover, .finished-btn:hover {
     background-color: chocolate;
     color: white;
     cursor: pointer;
@@ -76,15 +80,16 @@ input {
     width: 200px;
     background-color: beige;
 }
+
 #email {
     width: 183px;
 }
 
-#time, #date{
+#time, #date {
     width: 95px;
 }
 
-.event-content{
+.event-content {
     list-style-type: none;
     margin-top: -50px;
 }
@@ -103,11 +108,12 @@ article {
     margin-top: 10px;
     gap: 10px;
 }
+
 #third-field {
     position: relative;
 }
 
-#clear{
+#clear {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -119,41 +125,41 @@ article {
 /* Ensure that #third-field is relatively positioned */
 #third-field {
     position: relative;
-  }
-  
-  /* Style the #clear button */
-  #clear {
+}
+
+/* Style the #clear button */
+#clear {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 11px;
-  }
-  
-  /* Style the #finished-list */
-  #finished-list {
+}
+
+/* Style the #finished-list */
+#finished-list {
     overflow-y: auto; /* Add a vertical scrollbar if content exceeds the height */
     padding: 0; /* Remove default padding */
     margin-top: -40px;
- 
-  }
-  
-  /* Style the individual list items */
-  #finished-list li {
+
+}
+
+/* Style the individual list items */
+#finished-list li {
     height: 50px; /* Set a fixed height for each item */
     margin: 20px 0; /* Add some spacing between items */
-    
-  }
-  
-  #finished-list article {
+
+}
+
+#finished-list article {
     font-size: 10px;
     gap: 10px;
-    
-  }
-  
 
-  @media (max-width: 1000px) {
+}
+
+
+@media (max-width: 1000px) {
     #wrapper {
-      flex-direction: column;
+        flex-direction: column;
     }
-  }
+}
