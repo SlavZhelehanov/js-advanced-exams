@@ -63,6 +63,7 @@ form {
 #add-btn:hover , .edit-btn:hover , .continue-btn:hover, #clear:hover{
     background-color: chocolate;
     color: white;
+    cursor: pointer;
 }
 
 #add-btn:disabled {
