@@ -4,6 +4,7 @@ function solve() {
     const [time, date, place, eventName, email, addBtn] = document.querySelectorAll('input');
     const checkList = document.querySelector('#check-list');
     const upcomingList = document.querySelector('#upcoming-list');
+    const finishedList = document.querySelector('#finished-list');
 
     addBtn.addEventListener('click', e => {
         e.preventDefault();
@@ -48,6 +49,15 @@ function solve() {
             li.innerHTML += `<button class="finished-btn">Move to Finished</button>`;
             upcomingList.appendChild(li);
             addBtn.disabled = false;
+        }
+    });
+
+    upcomingList.addEventListener('click', e => {
+        if (e.target.classList.contains('finished-btn')) {
+            const li = e.target.parentNode;
+
+            li.querySelector('.finished-btn').remove();
+            finishedList.appendChild(li);
         }
     });
 }
