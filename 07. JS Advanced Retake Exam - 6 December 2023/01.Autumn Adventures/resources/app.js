@@ -5,11 +5,12 @@ function solve() {
     const checkList = document.querySelector('#check-list');
     const upcomingList = document.querySelector('#upcoming-list');
     const finishedList = document.querySelector('#finished-list');
+    const clear = document.querySelector('#clear');
 
     addBtn.addEventListener('click', e => {
         e.preventDefault();
 
-        if (time.value !== '' && date.value !== '' && place.value !== '' && eventName.value !== '' && email.value !== '') {
+        if (time.value.trim() !== '' && date.value.trim() !== '' && place.value.trim() !== '' && eventName.value.trim() !== '' && email.value.trim() !== '') {
             checkList.innerHTML = `<li class="event-content">
 <article>
 <p>Begins: ${date.value} at: ${time.value}</p>
@@ -59,6 +60,11 @@ function solve() {
             li.querySelector('.finished-btn').remove();
             finishedList.appendChild(li);
         }
+    });
+
+    clear.addEventListener('click', e => {
+        finishedList.innerHTML = '';
+        addBtn.disabled = false;
     });
 }
 
