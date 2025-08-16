@@ -15,6 +15,15 @@ class FashionRetailInventory {
         }
     }
 
+    sendProduct (productName, size) {
+        if (!this.productStock.some(stock => stock.productName === productName && stock.size === size)) {
+            throw new Error(`The product ${productName}, size ${size} is not in the inventory`);
+        } else {
+            this.productStock = this.productStock.filter(stock => stock.productName !== productName && stock.size !== size);
+            return `The product ${productName}, size ${size} was successfully removed from the inventory`;
+        }
+    }
+
     // getProducts() {
     //     return this.productStock;
     // }
@@ -27,3 +36,10 @@ class FashionRetailInventory {
 // console.log(storeHouse.addProduct("Sweather", "M", 10, 25.0));
 // console.log(storeHouse.addProduct("Sweather", "M", 10, 25.0));
 // console.log(storeHouse.getProducts());
+
+// Input 2
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+// console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+// console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+// console.log(storeHouse.sendProduct("T-Shirt", "M"));
+// console.log(storeHouse.sendProduct("Sweather", "M"));
