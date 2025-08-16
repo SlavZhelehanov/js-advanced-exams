@@ -24,6 +24,14 @@ class FashionRetailInventory {
         }
     }
 
+    findProductsBySize(size) {
+        if (!this.productStock.some(stock => stock.size === size)) {
+            return "There are no products available in that size";
+        } else {
+            return this.productStock.filter(stock => stock.size === size).map(stock => `${stock.productName}-${stock.quantity} pieces`).join(", ");
+        }
+    }
+
     // getProducts() {
     //     return this.productStock;
     // }
@@ -43,3 +51,11 @@ class FashionRetailInventory {
 // console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
 // console.log(storeHouse.sendProduct("T-Shirt", "M"));
 // console.log(storeHouse.sendProduct("Sweather", "M"));
+
+// Input 3
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+// console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+// console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+// console.log(storeHouse.findProductsBySize("M"));
+// console.log(storeHouse.findProductsBySize("XL"));
+
