@@ -32,9 +32,13 @@ class FashionRetailInventory {
         }
     }
 
-    // getProducts() {
-    //     return this.productStock;
-    // }
+    listProducts () {
+        if (0 === this.productStock.length) {
+            return `${this.storehouse} storehouse is empty`;
+        } else {
+            return `${this.storehouse} storehouse in ${this.location} available products:\n${this.productStock.sort((a, b) => a.productName.localeCompare(b.productName)).map(stock => `${stock.productName}/Size:${stock.size}/Quantity:${stock.quantity}/Price:${stock.price}$`).join("\n")}`;
+        }
+    }
 }
 
 // Input 1
@@ -43,7 +47,6 @@ class FashionRetailInventory {
 // console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
 // console.log(storeHouse.addProduct("Sweather", "M", 10, 25.0));
 // console.log(storeHouse.addProduct("Sweather", "M", 10, 25.0));
-// console.log(storeHouse.getProducts());
 
 // Input 2
 // const storeHouse = new FashionRetailInventory("East", "Milano");
@@ -59,3 +62,11 @@ class FashionRetailInventory {
 // console.log(storeHouse.findProductsBySize("M"));
 // console.log(storeHouse.findProductsBySize("XL"));
 
+// Input 4
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+// console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+// console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+// console.log(storeHouse.addProduct("Shirt", "L", 5, 30.0));
+// console.log(storeHouse.addProduct("Shoes", "9", 8, 50.0));
+// console.log(storeHouse.sendProduct("Shoes", "9", 8, 50.0));
+// console.log(storeHouse.listProducts());
