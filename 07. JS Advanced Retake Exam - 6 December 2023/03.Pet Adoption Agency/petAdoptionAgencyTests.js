@@ -47,4 +47,16 @@ describe("Pet Adoption Agency", function () {
                 .to.equal("Sorry, we currently have no recommended pets with the desired traits: quiet.");
         });
     });
+
+    describe("adoptPet()", function () {
+        it("should throw error for invalid input types", function () {
+            expect(() => petAdoptionAgency.adoptPet(123, "Alice")).to.throw("Invalid input");
+            expect(() => petAdoptionAgency.adoptPet("Dog", 123)).to.throw("Invalid input");
+        });
+
+        it("should return success message for valid inputs", function () {
+            expect(petAdoptionAgency.adoptPet("Dog", "Alice"))
+                .to.equal("Congratulations, Alice! You have adopted Dog from the agency. Enjoy your time with your new furry friend!");
+        });
+    });
 });
