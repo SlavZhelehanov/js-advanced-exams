@@ -24,4 +24,27 @@ describe("Pet Adoption Agency", function () {
                 .to.equal("Great! We have 2 Rabbit(s) available for adoption, but they need vaccination.");
         });
     });
+
+    describe("getRecommendedPets()", function () {
+        const pets = [
+            { name: "Bella", traits: "friendly" },
+            { name: "Max", traits: "playful" },
+            { name: "Luna", traits: "friendly" }
+        ];
+
+        it("should throw error for invalid input types", function () {
+            expect(() => petAdoptionAgency.getRecommendedPets("notArray", "friendly")).to.throw("Invalid input");
+            expect(() => petAdoptionAgency.getRecommendedPets(pets, 123)).to.throw("Invalid input");
+        });
+
+        it("should return recommended pets with matching traits", function () {
+            expect(petAdoptionAgency.getRecommendedPets(pets, "friendly"))
+                .to.equal("Recommended pets with the desired traits (friendly): Bella, Luna");
+        });
+
+        it("should return no matches if traits not found", function () {
+            expect(petAdoptionAgency.getRecommendedPets(pets, "quiet"))
+                .to.equal("Sorry, we currently have no recommended pets with the desired traits: quiet.");
+        });
+    });
 });
