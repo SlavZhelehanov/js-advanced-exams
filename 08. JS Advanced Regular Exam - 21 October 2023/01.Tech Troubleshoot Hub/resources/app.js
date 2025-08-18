@@ -9,6 +9,8 @@ function solution() {
     const addBtn = document.getElementById('add-btn');
     const previewList = document.getElementsByClassName('preview-list')[0];
 
+    let inputs = [];
+
     addBtn.addEventListener('click', e => {
         e.preventDefault();
 
@@ -24,12 +26,29 @@ function solution() {
 <button class="edit-btn">Edit</button>
 <button class="continue-btn">Continue</button>
 </li>`;
+            inputs.push(employee.value.trim());
             employee.value = '';
+            inputs.push(category.value.trim());
             category.value = '';
+            inputs.push(urgency.value.trim());
             urgency.value = '';
+            inputs.push(team.value.trim());
             team.value = '';
+            inputs.push(description.value.trim());
             description.value = '';
             addBtn.disabled = true;
+        }
+    });
+
+    previewList.addEventListener('click', e => {
+        if (e.target.classList.contains('edit-btn')) {
+            e.target.parentNode.remove();
+            employee.value = inputs.shift();
+            category.value = inputs.shift();
+            urgency.value = inputs.shift();
+            team.value = inputs.shift();
+            description.value = inputs.shift();
+            addBtn.disabled = false;
         }
     });
 }
