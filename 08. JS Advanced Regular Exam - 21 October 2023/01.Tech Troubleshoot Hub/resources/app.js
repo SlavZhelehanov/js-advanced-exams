@@ -9,6 +9,7 @@ function solution() {
     const addBtn = document.getElementById('add-btn');
     const previewList = document.getElementsByClassName('preview-list')[0];
     const pendingList = document.getElementsByClassName('pending-list')[0];
+    const resolvedList = document.getElementsByClassName('resolved-list')[0];
 
     let inputs = [];
 
@@ -62,6 +63,16 @@ function solution() {
 </article>
 <button class="resolve-btn">Resolve</button>
 </li>`;
+        }
+    });
+
+    pendingList.addEventListener('click', e => {
+        if (e.target.classList.contains('resolve-btn')) {
+            const li = e.target.parentNode;
+
+            li.querySelector('button').remove();
+            li.innerHTML += '<button class="clear-btn">Clear</button>';
+            resolvedList.appendChild(li);
         }
     });
 }
