@@ -8,6 +8,7 @@ function solution() {
     const description = document.getElementById('description');
     const addBtn = document.getElementById('add-btn');
     const previewList = document.getElementsByClassName('preview-list')[0];
+    const pendingList = document.getElementsByClassName('pending-list')[0];
 
     let inputs = [];
 
@@ -49,6 +50,18 @@ function solution() {
             team.value = inputs.shift();
             description.value = inputs.shift();
             addBtn.disabled = false;
+        } else if (e.target.classList.contains('continue-btn')) {
+            e.target.parentNode.remove();
+            pendingList.innerHTML = `<li class="problem-content">
+<article>
+<p>From: ${inputs.shift()}</p>
+<p>Category: ${inputs.shift()}</p>
+<p>Urgency: ${inputs.shift()}</p>
+<p>Assigned to: ${inputs.shift()}</p>
+<p>Description: ${inputs.shift()}</p>
+</article>
+<button class="resolve-btn">Resolve</button>
+</li>`;
         }
     });
 }
