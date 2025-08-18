@@ -75,6 +75,10 @@ function solution() {
             resolvedList.appendChild(li);
         }
     });
+
+    resolvedList.addEventListener('click', e => {
+        if (e.target.classList.contains('clear-btn')) e.target.parentNode.remove();
+    });
 }
 
 
