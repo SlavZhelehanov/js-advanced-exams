@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 // Assuming streamingServiceSelector is imported from your implementation file
-const streamingServiceSelector = require('./streamingServiceSelector');
+const streamingServiceSelector = require('../streamingServiceSelector');
 
 describe("streamingServiceSelector Tests", function () {
     describe("selectingContent()", function () {
