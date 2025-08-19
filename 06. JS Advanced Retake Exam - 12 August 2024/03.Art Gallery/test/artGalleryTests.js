@@ -1,4 +1,5 @@
 const { expect } = require("chai");
+const artGallery = require("../artGallery");
 
 describe("artGallery Tests", function () {
     describe("addArtwork()", function () {

@@ -52,3 +52,5 @@ const artGallery = {
     }
   },
 };
+
+module.exports = artGallery;
