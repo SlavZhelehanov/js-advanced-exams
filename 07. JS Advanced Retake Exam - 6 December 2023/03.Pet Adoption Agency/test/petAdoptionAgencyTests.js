@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const petAdoptionAgency = require("./petAdoptionAgency");
+const petAdoptionAgency = require("../petAdoptionAgency");
 
 describe("Pet Adoption Agency", function () {
     describe("isPetAvailable()", function () {

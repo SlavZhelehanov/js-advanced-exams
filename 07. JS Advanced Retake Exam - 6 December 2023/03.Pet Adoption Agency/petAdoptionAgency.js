@@ -42,4 +42,6 @@ const petAdoptionAgency = {
       return `Congratulations, ${adopterName}! You have adopted ${pet} from the agency. Enjoy your time with your new furry friend!`;
     },
   };
+  
+  module.exports = petAdoptionAgency;
  
