@@ -1,4 +1,5 @@
-let { Repository } = require("./solution.js");
+const {expect} = require('chai');
+let { Repository } = require("../solution.js");
 
 describe("Tests …", function () {
     let properties;
@@ -47,7 +48,7 @@ describe("Tests …", function () {
         });
 
         it('should throw if property type is incorrect', () => {
-            let badEntity = { name: 'Pesho', age: '22', birthday: new Date() };
+            let badEntity = { name: 'Pesho', age: 'ab22c', birthday: new Date() };
             expect(() => repository.add(badEntity)).to.throw(TypeError, 'Property age is not of correct type!');
         });
     });
@@ -78,8 +79,10 @@ describe("Tests …", function () {
 
         it('should validate updated entity', () => {
             const id = repository.add(entity);
-            const badEntity = { name: 'Pesho', age: 'wrong', birthday: new Date() };
-            expect(() => repository.update(id, badEntity)).to.throw(TypeError, 'Property age is not of correct type!');
+            const badEntity1 = { name: 'Pesho', age: 'wrong', birthday: new Date() };
+            const badEntity2 = { name: 'Pesho', age: 22 };
+            expect(() => repository.update(id, badEntity1)).to.throw(TypeError, 'Property age is not of correct type!');
+            expect(() => repository.update(id, badEntity2)).to.throw(Error, 'Property birthday is missing from the entity!');
         });
     });
 
