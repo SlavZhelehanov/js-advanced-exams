@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const ChristmasMovies = require('./ChristmasMovies'); // adjust path if needed
+const ChristmasMovies = require('../ChristmasMovies'); // adjust path if needed
 
 describe("ChristmasMovies Class Tests", function () {
 
