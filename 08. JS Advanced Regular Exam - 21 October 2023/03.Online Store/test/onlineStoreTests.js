@@ -35,4 +35,28 @@ describe("Tests …", function() {
             expect(onlineStore.canAffordProduct(2, 3)).to.equal("Product purchased. Your remaining balance is $1.");
         });
     });
+
+    describe("getRecommendedProducts()", function() {
+        const products = [
+            { name: "Camera", category: "Photography" },
+            { name: "Router", category: "IT" },
+            { name: "Switch", category: "IT" },
+            { name: "Tire", category: "Car parts" }
+        ];
+
+        it("should throw an error for invalid input types", function() {
+            expect(() => onlineStore.getRecommendedProducts(123, "Photography")).to.throw("Invalid input.");
+            expect(() => onlineStore.getRecommendedProducts("notArray", "Photography")).to.throw("Invalid input.");
+            expect(() => onlineStore.getRecommendedProducts(products, 321)).to.throw("Invalid input.");
+            expect(() => onlineStore.getRecommendedProducts(products, products)).to.throw("Invalid input.");
+        });
+
+        it("should find and return product names that match the specified category", function() {
+            expect(onlineStore.getRecommendedProducts(products, "IT")).to.equal("Recommended products in the IT category: Router, Switch");
+        });
+
+        it("should return no matches if there are no recommended products in the specified category", function() {
+            expect(onlineStore.getRecommendedProducts(products, "entertainment")).to.equal("Sorry, we currently have no recommended products in the entertainment category.");
+        });
+    });
 });
