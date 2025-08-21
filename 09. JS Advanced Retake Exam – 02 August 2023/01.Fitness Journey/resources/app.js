@@ -8,6 +8,7 @@ function solve() {
     const classTime = document.getElementById('class-time');
     const nextBtn = document.getElementById('next-btn');
     const classInfo = document.getElementsByClassName('class-info')[0];
+    const confirmClass = document.getElementsByClassName('confirm-class')[0];
 
     let inputs = [];
 
@@ -49,6 +50,16 @@ function solve() {
             classTime.value = inputs.shift();
             nextBtn.disabled = false;
             e.target.parentNode.remove();
+        } else if (e.target.classList.contains('continue-btn')) {
+            const li = e.target.parentNode;
+            const editBtn = li.querySelector(".edit-btn");
+            const continueBtn = li.querySelector(".continue-btn");
+
+            editBtn.className = "cancel-btn";
+            editBtn.textContent = "Cancel";
+            continueBtn.className = "confirm-btn";
+            continueBtn.textContent = "Confirm";
+            confirmClass.appendChild(li);
         }
     });
 }
