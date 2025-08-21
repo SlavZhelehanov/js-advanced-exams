@@ -70,6 +70,8 @@ function solve() {
             nextBtn.disabled = false;
         } else if (e.target.classList.contains('confirm-btn')) body.innerHTML = `<h1 id="thank-you">Thank you for scheduling your appointment, we look forward to seeing you!</h1>
 <button id="done-btn">Done</button>`;
+
+        document.getElementById('done-btn').addEventListener('click', e => {location.reload();});
     });
 }
 
