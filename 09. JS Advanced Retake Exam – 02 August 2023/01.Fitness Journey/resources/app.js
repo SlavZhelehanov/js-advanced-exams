@@ -39,6 +39,18 @@ function solve() {
             nextBtn.disabled = true;
         }
     });
+
+    classInfo.addEventListener('click', e => {
+        if (e.target.classList.contains('edit-btn')) {
+            name.value = inputs.shift();
+            email.value = inputs.shift();
+            contactNumber.value = inputs.shift();
+            classType.value = inputs.shift();
+            classTime.value = inputs.shift();
+            nextBtn.disabled = false;
+            e.target.parentNode.remove();
+        }
+    });
 }
 
 
