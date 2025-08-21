@@ -62,6 +62,13 @@ function solve() {
             confirmClass.appendChild(li);
         }
     });
+
+    confirmClass.addEventListener('click', e => {
+        if (e.target.classList.contains('cancel-btn')) {
+            e.target.parentNode.remove();
+            nextBtn.disabled = false;
+        }
+    });
 }
 
 
