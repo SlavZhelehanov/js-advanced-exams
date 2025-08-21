@@ -157,6 +157,7 @@ label {
 }
 #next-btn:hover{
     background-color: lightblue;
+    cursor: pointer;
 }
 
 #next-btn:disabled:hover{
@@ -200,6 +201,7 @@ article> h3,p {
 }
 .edit-btn:hover,.continue-btn:hover, .confirm-btn:hover , .cancel-btn:hover {
     background-color: lightblue;
+    cursor: pointer;
 }
 
 
