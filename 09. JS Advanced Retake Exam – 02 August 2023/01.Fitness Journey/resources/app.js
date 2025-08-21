@@ -9,6 +9,7 @@ function solve() {
     const nextBtn = document.getElementById('next-btn');
     const classInfo = document.getElementsByClassName('class-info')[0];
     const confirmClass = document.getElementsByClassName('confirm-class')[0];
+    const body = document.getElementById('body');
 
     let inputs = [];
 
@@ -67,7 +68,8 @@ function solve() {
         if (e.target.classList.contains('cancel-btn')) {
             e.target.parentNode.remove();
             nextBtn.disabled = false;
-        }
+        } else if (e.target.classList.contains('confirm-btn')) body.innerHTML = `<h1 id="thank-you">Thank you for scheduling your appointment, we look forward to seeing you!</h1>
+<button id="done-btn">Done</button>`;
     });
 }
 
