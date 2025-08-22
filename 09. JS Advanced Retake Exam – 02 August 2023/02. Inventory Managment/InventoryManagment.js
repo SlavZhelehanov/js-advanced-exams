@@ -9,8 +9,22 @@ class InventoryManager {
         if (quantity <= 0) throw new Error("Quantity must be greater than zero.");
         if (this.capacity === this.items.length) throw new Error("The inventory is already full.");
         if (this.items.some((item) => item.itemName === itemName)) this.items.find(item => item.itemName === itemName).quantity += quantity;
-        else this.items.push({[itemName]: quantity});
+        else this.items.push({itemName, quantity});
         return `Added ${quantity} ${itemName}(s) to the inventory.`;
+    }
+
+    sellItem(itemName, quantity) {
+        if (quantity <= 0) throw new Error("Quantity must be greater than zero.");
+        if (!this.items.some(item => item.itemName === itemName)) throw new Error(`The item ${itemName} is not available in the inventory.`);
+        if (this.items.find(item => item.itemName === itemName).quantity < quantity) throw new Error(`Not enough ${itemName}(s) in stock.`);
+
+        this.items.find(item => item.itemName === itemName).quantity -= quantity;
+
+        if (this.items.find(item => item.itemName === itemName).quantity === 0) {
+            this.items = this.items.filter(item => item.itemName !== itemName);
+            this.outOfStock.push(itemName);
+        }
+        return `Sold ${quantity} ${itemName}(s) from the inventory.`;
     }
 }
 
@@ -20,3 +34,12 @@ class InventoryManager {
 // console.log(manager.addItem("Drill", 10));
 // console.log(manager.addItem("Hammer", 5));
 // console.log(manager.addItem("Level", 3));
+
+// Input 2
+// const manager = new InventoryManager(3);
+//
+// console.log(manager.addItem("Drill", 10));
+// console.log(manager.addItem("Hammer", 5));
+// console.log(manager.addItem("Chisel", 3));
+// console.log(manager.sellItem("Drill", 3));
+// console.log(manager.sellItem("Paintbrush", 2));
