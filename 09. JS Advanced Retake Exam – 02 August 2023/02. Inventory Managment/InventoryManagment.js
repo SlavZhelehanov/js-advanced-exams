@@ -26,6 +26,14 @@ class InventoryManager {
         }
         return `Sold ${quantity} ${itemName}(s) from the inventory.`;
     }
+
+    restockItem(itemName, quantity) {
+        if (quantity <= 0) throw new Error("Quantity must be greater than zero.");
+        if (this.outOfStock.includes(itemName)) this.outOfStock = this.outOfStock.filter(item => item.itemName !== itemName);
+        if (this.items.some((item) => item.itemName === itemName)) this.items.find(item => item.itemName === itemName).quantity += quantity;
+        else this.items.push({itemName, quantity});
+        return `Restocked ${quantity} ${itemName}(s) in the inventory.`
+    }
 }
 
 // Input 1
@@ -43,3 +51,13 @@ class InventoryManager {
 // console.log(manager.addItem("Chisel", 3));
 // console.log(manager.sellItem("Drill", 3));
 // console.log(manager.sellItem("Paintbrush", 2));
+
+// Input 3
+// const manager = new InventoryManager(3);
+//
+// console.log(manager.addItem("Drill", 10));
+// console.log(manager.addItem("Hammer", 5));
+// console.log(manager.addItem("Chisel", 3));
+// console.log(manager.sellItem("Drill", 3));
+// console.log(manager.restockItem("Drill", 5));
+// console.log(manager.restockItem("Paintbrush", 1));
