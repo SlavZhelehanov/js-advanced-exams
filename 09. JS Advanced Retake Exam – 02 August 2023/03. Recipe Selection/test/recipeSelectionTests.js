@@ -39,4 +39,35 @@ describe("Tests for recipeSelection", function () {
             expect(recipeSelection.isItAffordable(5, 6)).to.equal("Recipe ingredients bought. You have 1$ left");
         });
     });
+
+    describe("getRecipesByCategory()", function () {
+        const data = [
+            {title: "Spicy Tofu Stir-Fry", category: "Asian"},
+            {title: "Shopska salad", category: "Bulgarian"},
+            {title: "Borj", category: "Russian"},
+            {title: "Pasta", category: "Italian"}
+        ];
+
+        it("should throw an error for invalid input types", function () {
+            expect(() => recipeSelection.getRecipesByCategory(123, 123)).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory("recipes", "category")).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory(data, data)).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory(123, "data")).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory(123, data)).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory("data", "data")).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory("data", 123)).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory("data", data)).to.throw("Invalid input");
+            expect(() => recipeSelection.getRecipesByCategory(data, 123)).to.throw("Invalid input");
+        });
+
+        it("should returns an array of strings", function () {
+            const result = recipeSelection.getRecipesByCategory(data, "Bulgarian");
+            expect(result).to.deep.equal(["Shopska salad"]);
+        });
+
+        it("should return an empty array if no recipes match the category", () => {
+            const result = recipeSelection.getRecipesByCategory(data, "French");
+            expect(result).to.deep.equal([]);
+        });
+    });
 });
