@@ -7,7 +7,7 @@ class InventoryManager {
 
     addItem(itemName, quantity) {
         if (quantity <= 0) throw new Error("Quantity must be greater than zero.");
-        if (this.capacity === this.items.length) throw new Error("The inventory is already full.");
+        if (this.capacity <= this.items.length) throw new Error("The inventory is already full.");
         if (this.items.some((item) => item.itemName === itemName)) this.items.find(item => item.itemName === itemName).quantity += quantity;
         else this.items.push({itemName, quantity});
         return `Added ${quantity} ${itemName}(s) to the inventory.`;
@@ -33,6 +33,15 @@ class InventoryManager {
         if (this.items.some((item) => item.itemName === itemName)) this.items.find(item => item.itemName === itemName).quantity += quantity;
         else this.items.push({itemName, quantity});
         return `Restocked ${quantity} ${itemName}(s) in the inventory.`
+    }
+
+    getInventorySummary() {
+        let message = "Current Inventory:";
+
+        this.items.forEach(({itemName, quantity}) => message += `\n${itemName}: ${quantity}`);
+
+        if (0 < this.outOfStock.length) message += `\nOut of Stock: ${this.outOfStock.join(", ")}`;
+        return message;
     }
 }
 
@@ -61,3 +70,15 @@ class InventoryManager {
 // console.log(manager.sellItem("Drill", 3));
 // console.log(manager.restockItem("Drill", 5));
 // console.log(manager.restockItem("Paintbrush", 1));
+
+// Input 4
+// const manager = new InventoryManager(3);
+//
+// console.log(manager.addItem("Drill", 10));
+// console.log(manager.addItem("Hammer", 5));
+// console.log(manager.addItem("Chisel", 3));
+// console.log(manager.sellItem("Drill", 3));
+// console.log(manager.sellItem("Hammer", 5));
+// console.log(manager.restockItem("Drill", 5));
+// console.log(manager.restockItem("Paintbrush", 1));
+// console.log(manager.getInventorySummary());
