@@ -8,6 +8,7 @@ function solve() {
     const type = document.getElementById("type");
     const addBtn = document.getElementById("add-btn");
     const previewList = document.getElementById("preview-list");
+    const collection = document.getElementById("collection");
 
     let inputs = [];
 
@@ -49,6 +50,10 @@ function solve() {
             carats.value = inputs.shift();
             price.value = inputs.shift();
             type.value = inputs.shift();
+            addBtn.disabled = false;
+        } else if (e.target.classList.contains("save-btn")) {
+            e.target.parentNode.remove();
+            collection.innerHTML += `<li><p class="collection-item">${inputs.shift()} - Color: ${inputs.shift()}/ Carats: ${inputs.shift()}/ Price: ${inputs.shift()}$/ Type: ${inputs.shift()}</p></li>`;
             addBtn.disabled = false;
         }
     });
