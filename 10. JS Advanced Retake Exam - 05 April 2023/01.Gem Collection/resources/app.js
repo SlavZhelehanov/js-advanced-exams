@@ -55,6 +55,10 @@ function solve() {
             e.target.parentNode.remove();
             collection.innerHTML += `<li><p class="collection-item">${inputs.shift()} - Color: ${inputs.shift()}/ Carats: ${inputs.shift()}/ Price: ${inputs.shift()}$/ Type: ${inputs.shift()}</p></li>`;
             addBtn.disabled = false;
+        } else if (e.target.classList.contains("cancel-btn")) {
+            e.target.parentNode.remove();
+            inputs = [];
+            addBtn.disabled = false;
         }
     });
 }
