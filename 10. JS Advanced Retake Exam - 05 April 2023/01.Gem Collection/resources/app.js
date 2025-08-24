@@ -1,14 +1,9 @@
 window.addEventListener("load", solve);
 
 function solve() {
-    const gemName = document.getElementById("gem-name");
-    const color  = document.getElementById("color");
-    const carats = document.getElementById("carats");
-    const price = document.getElementById("price");
+    const [gemName, color, carats, price, addBtn] = document.querySelectorAll("input");
     const type = document.getElementById("type");
-    const addBtn = document.getElementById("add-btn");
-    const previewList = document.getElementById("preview-list");
-    const collection = document.getElementById("collection");
+    const [previewList, collection] = document.querySelectorAll("ul");
 
     let inputs = [];
 
@@ -45,11 +40,8 @@ function solve() {
     previewList.addEventListener("click", e => {
         if (e.target.classList.contains("edit-btn")) {
             e.target.parentNode.remove();
-            gemName.value = inputs.shift();
-            color.value = inputs.shift();
-            carats.value = inputs.shift();
-            price.value = inputs.shift();
-            type.value = inputs.shift();
+            [gemName.value, color.value, carats.value, price.value, type.value] = [...inputs];
+            inputs = [];
             addBtn.disabled = false;
         } else if (e.target.classList.contains("save-btn")) {
             e.target.parentNode.remove();
