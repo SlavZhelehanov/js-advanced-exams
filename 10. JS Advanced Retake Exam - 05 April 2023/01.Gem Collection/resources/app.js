@@ -40,4 +40,16 @@ function solve() {
             addBtn.disabled = true;
         }
     });
+
+    previewList.addEventListener("click", e => {
+        if (e.target.classList.contains("edit-btn")) {
+            e.target.parentNode.remove();
+            gemName.value = inputs.shift();
+            color.value = inputs.shift();
+            carats.value = inputs.shift();
+            price.value = inputs.shift();
+            type.value = inputs.shift();
+            addBtn.disabled = false;
+        }
+    });
 }
