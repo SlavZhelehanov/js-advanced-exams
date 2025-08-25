@@ -70,4 +70,56 @@ describe("Tests for weddingDay", function () {
             expect(result).to.equal('You spend 1300$ for wedding decoration and photography!');
         });
     });
+
+    describe("tableDistribution()", function () {
+        it('should return join tables message when people per table < 6', () => {
+            const result = weddingDay.tableDistribution(10, 3);
+            expect(result).to.equal('There is only 3 people on every table, you can join some tables.');
+        });
+
+        it('should return correct message when people per table = 6', () => {
+            const result = weddingDay.tableDistribution(60, 10);
+            expect(result).to.equal('You have 10 tables with 6 guests on table.');
+        });
+
+        it('should return correct message when people per table > 6', () => {
+            const result = weddingDay.tableDistribution(25, 4);
+            expect(result).to.equal('You have 4 tables with 6 guests on table.');
+        });
+
+        it('should round up when decimal >= .5', () => {
+            const result = weddingDay.tableDistribution(20, 3);
+            expect(result).to.equal('You have 3 tables with 7 guests on table.');
+        });
+
+        it('should throw error if guests is not a number', () => {
+            expect(() => weddingDay.tableDistribution('20', 4))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if tables is not a number', () => {
+            expect(() => weddingDay.tableDistribution(20, '4'))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if guests is zero', () => {
+            expect(() => weddingDay.tableDistribution(0, 4))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if tables is zero', () => {
+            expect(() => weddingDay.tableDistribution(20, 0))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if guests is negative', () => {
+            expect(() => weddingDay.tableDistribution(-5, 4))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if tables is negative', () => {
+            expect(() => weddingDay.tableDistribution(20, -2))
+                .to.throw('Invalid Information!');
+        });
+    });
 });
