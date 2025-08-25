@@ -25,6 +25,17 @@ class RefurbishedSmartphones {
         this.revenue += phone.price;
         return `${model} was sold for ${phone.price.toFixed(2)}$`;
     }
+
+    upgradePhones () {
+        if (0 === this.availableSmartphones.length) throw new Error("There are no available smartphones!");
+        let output = "Upgraded Smartphones:";
+
+        for (let i = 0; i < this.availableSmartphones.length; i++) {
+            this.availableSmartphones[i].storage *= 2;
+            output += `\n${this.availableSmartphones[i].model} / ${this.availableSmartphones[i].storage} GB / ${this.availableSmartphones[i].condition} condition / ${this.availableSmartphones[i].price.toFixed(2)}$`
+        }
+        return output;
+    }
 }
 
 // Input 1
@@ -41,4 +52,11 @@ class RefurbishedSmartphones {
 // console.log(retailer.sellSmartphone('Samsung S20 Ultra', 256));
 // console.log(retailer.sellSmartphone('Xiaomi Redmi Note 10 Pro', 256));
 // console.log(retailer.sellSmartphone('Samsung Galaxy A13', 64));
+
+// Input 3
+// let retailer = new RefurbishedSmartphones('SecondLife Devices');
+// retailer.addSmartphone('Samsung S20 Ultra', 256, 1000, 'good');
+// retailer.addSmartphone('Iphone 12 mini', 128, 800, 'perfect');
+// retailer.addSmartphone('Xiaomi Redmi Note 10 Pro', 128, 330, 'perfect');
+// console.log(retailer.upgradePhones());
 
