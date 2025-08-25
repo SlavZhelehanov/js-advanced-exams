@@ -50,6 +50,16 @@ describe("Tests for weddingDay", function () {
             expect(result).to.equal('You spend 2465$ for wedding decoration and photography with 15% discount!');
         });
 
+        it('should handle case with no weddingDecoration but photography only', () => {
+            const result = weddingDay.otherSpendings([], ['video'], false);
+            expect(result).to.equal('You spend 1300$ for wedding decoration and photography!');
+        });
+
+        it('should handle case with no photography but weddingDecoration only', () => {
+            const result = weddingDay.otherSpendings(['Fabric drapes and curtains'], [], false);
+            expect(result).to.equal('You spend 400$ for wedding decoration and photography!');
+        });
+
         it('should throw error if weddingDecoration is not an array', () => {
             expect(() => weddingDay.otherSpendings('flowers', ['pictures'], false))
                 .to.throw('Invalid Information!');
@@ -63,11 +73,6 @@ describe("Tests for weddingDay", function () {
         it('should throw error if discount is not a boolean', () => {
             expect(() => weddingDay.otherSpendings(['flowers'], ['pictures'], 'true'))
                 .to.throw('Invalid Information!');
-        });
-
-        it('should work with only one category filled', () => {
-            const result = weddingDay.otherSpendings([], ['video'], false);
-            expect(result).to.equal('You spend 1300$ for wedding decoration and photography!');
         });
     });
 
