@@ -29,4 +29,45 @@ describe("Tests for weddingDay", function () {
             expect(weddingDay.pickVenue(160, 110, "Varna")).to.equal("This venue meets the requirements, with capacity of 160 guests and 110$ cover.");
         });
     });
+
+    describe("otherSpendings()", function () {
+        it('should calculate total without discount for valid inputs', () => {
+            const result = weddingDay.otherSpendings(['flowers'], ['pictures'], false);
+            expect(result).to.equal('You spend 1200$ for wedding decoration and photography!');
+        });
+
+        it('should calculate total with discount for valid inputs', () => {
+            const result = weddingDay.otherSpendings(['flowers'], ['pictures'], true);
+            expect(result).to.equal('You spend 1020$ for wedding decoration and photography with 15% discount!');
+        });
+
+        it('should handle multiple items and apply discount correctly', () => {
+            const result = weddingDay.otherSpendings(
+                ['flowers', 'Fabric drapes and curtains'],
+                ['pictures', 'video'],
+                true
+            );
+            expect(result).to.equal('You spend 2465$ for wedding decoration and photography with 15% discount!');
+        });
+
+        it('should throw error if weddingDecoration is not an array', () => {
+            expect(() => weddingDay.otherSpendings('flowers', ['pictures'], false))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if photography is not an array', () => {
+            expect(() => weddingDay.otherSpendings(['flowers'], 'pictures', false))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should throw error if discount is not a boolean', () => {
+            expect(() => weddingDay.otherSpendings(['flowers'], ['pictures'], 'true'))
+                .to.throw('Invalid Information!');
+        });
+
+        it('should work with only one category filled', () => {
+            const result = weddingDay.otherSpendings([], ['video'], false);
+            expect(result).to.equal('You spend 1300$ for wedding decoration and photography!');
+        });
+    });
 });
