@@ -36,6 +36,16 @@ class RefurbishedSmartphones {
         }
         return output;
     }
+
+    salesJournal (criteria) {
+        if (criteria !== 'storage' && criteria !== 'model') throw new Error(`Invalid criteria!`);
+        let output = `${ this.retailer} has a total income of ${ this.revenue.toFixed(2) }$\n${this.soldSmartphones.length} smartphones sold:`;
+
+        if (criteria === 'storage') this.soldSmartphones.sort((a, b) => b.storage - a.storage);
+        else this.soldSmartphones.sort((a, b) => a.model.localeCompare(b.model));
+        this.soldSmartphones.forEach(({model, storage, soldPrice}) => output += `\n${model} / ${storage} GB / ${soldPrice.toFixed(2)}$`);
+        return output;
+    }
 }
 
 // Input 1
@@ -60,3 +70,11 @@ class RefurbishedSmartphones {
 // retailer.addSmartphone('Xiaomi Redmi Note 10 Pro', 128, 330, 'perfect');
 // console.log(retailer.upgradePhones());
 
+// Input 4
+// let retailer = new RefurbishedSmartphones('SecondLife Devices');
+// retailer.addSmartphone('Samsung S20 Ultra', 256, 1000, 'good');
+// retailer.addSmartphone('Iphone 12 mini', 128, 800, 'perfect');
+// retailer.addSmartphone('Xiaomi Redmi Note 10 Pro', 128, 330, 'perfect');
+// retailer.sellSmartphone('Samsung S20 Ultra', 256);
+// retailer.sellSmartphone('Xiaomi Redmi Note 10 Pro', 256);
+// console.log(retailer.salesJournal('model'));
