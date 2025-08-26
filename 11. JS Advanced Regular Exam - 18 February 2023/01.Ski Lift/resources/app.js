@@ -45,6 +45,13 @@ function solve() {
             confirmTicket.appendChild(li);
         }
     });
+
+    confirmTicket.addEventListener('click', e => {
+        if (e.target.classList.contains('cancel-btn')) {
+            e.target.parentNode.remove();
+            nextBtn.disabled = false;
+        }
+    });
 }
 
 
