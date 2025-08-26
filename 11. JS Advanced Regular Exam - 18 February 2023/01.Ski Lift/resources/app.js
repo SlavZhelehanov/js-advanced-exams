@@ -50,6 +50,8 @@ function solve() {
         if (e.target.classList.contains('cancel-btn')) {
             e.target.parentNode.remove();
             nextBtn.disabled = false;
+        } else if (e.target.classList.contains('confirm-btn')) {
+            document.getElementById('body').innerHTML = `<h1 id="thank-you">Thank you, have a nice day</h1><button id="back-btn">Back</button>`;
         }
     });
 }
