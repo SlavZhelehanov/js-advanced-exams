@@ -49,9 +49,11 @@ function solve() {
     confirmTicket.addEventListener('click', e => {
         if (e.target.classList.contains('cancel-btn')) {
             e.target.parentNode.remove();
+            formData = [];
             nextBtn.disabled = false;
         } else if (e.target.classList.contains('confirm-btn')) {
             document.getElementById('body').innerHTML = `<h1 id="thank-you">Thank you, have a nice day</h1><button id="back-btn">Back</button>`;
+            document.getElementById('back-btn').addEventListener('click', e => {location.reload();});
         }
     });
 }
