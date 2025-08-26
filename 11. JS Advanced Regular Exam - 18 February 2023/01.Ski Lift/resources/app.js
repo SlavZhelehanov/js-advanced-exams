@@ -26,6 +26,15 @@ function solve() {
             nextBtn.disabled = true;
         }
     });
+
+    ticketInfoList.addEventListener('click', e => {
+        if (e.target.classList.contains('edit-btn')) {
+            e.target.parentNode.remove();
+            [firstName.value, lastName.value, peopleCount.value, fromDate.value, daysCount.value] = formData;
+            formData = [];
+            nextBtn.disabled = false;
+        }
+    });
 }
 
 
