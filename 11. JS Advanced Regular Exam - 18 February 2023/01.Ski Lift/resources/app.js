@@ -33,6 +33,16 @@ function solve() {
             [firstName.value, lastName.value, peopleCount.value, fromDate.value, daysCount.value] = formData;
             formData = [];
             nextBtn.disabled = false;
+        } else if (e.target.classList.contains('continue-btn')) {
+            const li = e.target.parentNode;
+            const [firstBtn, secondBtn] = li.getElementsByTagName('button');
+
+            li.className = 'ticket-content';
+            firstBtn.className = 'confirm-btn';
+            secondBtn.className = 'cancel-btn';
+            firstBtn.textContent = 'Confirm';
+            secondBtn.textContent = 'Cancel';
+            confirmTicket.appendChild(li);
         }
     });
 }
