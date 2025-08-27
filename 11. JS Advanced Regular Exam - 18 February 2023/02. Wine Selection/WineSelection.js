@@ -18,6 +18,14 @@ class WineSelection {
         this.bill += this.wines.find(wine => wine.wineName === wineName).price;
         return `You bought a ${wineName} for a {price}$.`;
     }
+
+    openBottle(wineName){
+        if (!this.wines.some(wine => wine.wineName === wineName)) throw new Error("The wine, you're looking for, is not found.");
+        if (!this.wines.find(wine => wine.wineName === wineName).paid) throw new Error(`${wineName} need to be paid before open the bottle.`);
+        this.wines = this.wines.filter(wine => wine.wineName !== wineName);
+        return `You drank a bottle of ${wineName}.`;
+    }
+
 }
 
 // Input 1
@@ -32,3 +40,10 @@ class WineSelection {
 // console.log(selection.payWineBottle('Sauvignon Blanc Marlborough', 120));
 // console.log(selection.payWineBottle('Bodegas Godelia Mencía', 144));
 
+// Input 3
+// const selection = new WineSelection(2)
+// selection.reserveABottle('Sauvignon Blanc Marlborough', 'White', 50);
+// selection.reserveABottle('Cabernet Sauvignon Napa Valley', 'Red', 120);
+// selection.payWineBottle('Sauvignon Blanc Marlborough', 50);
+// console.log(selection.openBottle('Sauvignon Blanc Marlborough'));
+// console.log(selection.openBottle('Cabernet Sauvignon Napa Valley'));
