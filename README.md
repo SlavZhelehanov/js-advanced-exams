@@ -10,4 +10,4 @@
 - [x] 08. JS Advanced Regular Exam - 21 October 2023
 - [x] 09. JS Advanced Retake Exam – 02 August 2023
 - [x] 10. JS Advanced Retake Exam - 05 April 2023
-- [ ] 11. JS Advanced Regular Exam - 18 February 2023
+- [x] 11. JS Advanced Regular Exam - 18 February 2023
