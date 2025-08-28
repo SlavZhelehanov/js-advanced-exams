@@ -25,4 +25,32 @@ describe("Tests for findNewApartment", function () {
             expect(isGoodLocation("Sofia", true)).to.equal("You can go on home tour!");
         });
     });
+
+    describe("isLargeEnough()", function () {
+        it("should throw an error for invalid input types", function () {
+            expect(() => isLargeEnough(123, 123)).to.throw("Invalid input!");
+            expect(() => isLargeEnough(true, 123)).to.throw("Invalid input!");
+            expect(() => isLargeEnough("apartments", 123)).to.throw("Invalid input!");
+            expect(() => isLargeEnough([], 123)).to.throw("Invalid input!");
+            expect(() => isLargeEnough([40, 50, 60], [40, 50, 60])).to.throw("Invalid input!");
+            expect(() => isLargeEnough([40, 50, 60], "minimalSquareMeters")).to.throw("Invalid input!");
+            expect(() => isLargeEnough([40, 50, 60], true)).to.throw("Invalid input!");
+        });
+        it('should return apartments equal or larger than minimalSquareMeters', () => {
+            const result = isLargeEnough([40, 50, 60], 50);
+            expect(result).to.equal('50, 60');
+        });
+        it('should return all apartments if all are larger than minimalSquareMeters', () => {
+            const result = isLargeEnough([70, 80, 90], 60);
+            expect(result).to.equal('70, 80, 90');
+        });
+        it('should return an empty string if no apartments meet the criteria', () => {
+            const result = isLargeEnough([30, 35, 40], 50);
+            expect(result).to.equal('');
+        });
+        it('should include apartments equal to minimalSquareMeters', () => {
+            const result = isLargeEnough([45, 50, 55], 50);
+            expect(result).to.equal('50, 55');
+        });
+    });
 });
