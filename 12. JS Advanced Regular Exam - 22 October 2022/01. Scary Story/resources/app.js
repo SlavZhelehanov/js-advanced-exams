@@ -38,6 +38,10 @@ function solve() {
             formBtn.disabled = false;
         } else if (e.target.classList.contains("save-btn")) {
             document.getElementById("main").innerHTML = '<h1>"Your scary story is saved!"</h1>';
+        } else if (e.target.classList.contains("delete-btn")) {
+            e.target.parentNode.remove();
+            inputs = [];
+            formBtn.disabled = false;
         }
     });
 }
