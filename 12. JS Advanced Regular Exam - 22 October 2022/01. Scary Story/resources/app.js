@@ -23,10 +23,19 @@ function solve() {
 <button class="save-btn">Save Story</button>
 <button class="edit-btn">Edit Story</button>
 <button class="delete-btn">Delete Story</button>
-            </li>"`;
+            </li>`;
             inputs.push(firstName.value.trim(), lastName.value.trim(), age.value.trim(), storyTitle.value.trim(), genre.value.trim(), story.value.trim());
             [firstName.value, lastName.value, age.value, storyTitle.value, genre.value, story.value] = ['', '', '', '', '', ''];
             formBtn.disabled = true;
+        }
+    });
+
+    previewList.addEventListener("click", e => {
+        if (e.target.classList.contains("edit-btn")) {
+            e.target.parentNode.remove();
+            [firstName.value, lastName.value, age.value, storyTitle.value, genre.value, story.value] = [...inputs];
+            inputs = [];
+            formBtn.disabled = false;
         }
     });
 }
