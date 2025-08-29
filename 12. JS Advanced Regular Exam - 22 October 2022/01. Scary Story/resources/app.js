@@ -36,6 +36,8 @@ function solve() {
             [firstName.value, lastName.value, age.value, storyTitle.value, genre.value, story.value] = [...inputs];
             inputs = [];
             formBtn.disabled = false;
+        } else if (e.target.classList.contains("save-btn")) {
+            document.getElementById("main").innerHTML = '<h1>"Your scary story is saved!"</h1>';
         }
     });
 }
