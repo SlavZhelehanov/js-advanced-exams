@@ -40,6 +40,13 @@ class footballTeam {
         if (player.age < age && 5 < age - player.age) return `${name} will sign a full 5 years contract for ${this.clubName} in ${this.country}!`;
         if (age <= player.age) return `${name} is above age limit!`;
     }
+
+    transferWindowResult() {
+        let result = ["Players list:"];
+
+        this.invitedPlayers.sort((a, b) => a.name.localeCompare(b.name)).forEach(({name, age, playerValue}) => result.push(`Player ${name}-${playerValue}`));
+        return result.join("\n");
+    }
 }
 
 // Input 1
@@ -61,3 +68,9 @@ class footballTeam {
 // console.log(fTeam.ageLimit("Pau Torres", 26));
 // console.log(fTeam.signContract("Kylian Mbappé/240"));
 
+// Input 4
+// let fTeam = new footballTeam("Barcelona", "Spain");
+// console.log(fTeam.newAdditions(["Kylian Mbappé/23/160", "Lionel Messi/35/50", "Pau Torres/25/52"]));
+// console.log(fTeam.signContract("Kylian Mbappé/240"));
+// console.log(fTeam.ageLimit("Kylian Mbappé", 30));
+// console.log(fTeam.transferWindowResult());
