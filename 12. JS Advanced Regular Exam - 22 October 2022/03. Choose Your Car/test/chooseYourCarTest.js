@@ -55,4 +55,41 @@ describe("Tests for chooseYourCar", function () {
                 .to.equal("BMW, Toyota");
         });
     });
+
+    describe("carFuelConsumption()", function () {
+        it("should throw error if distanceInKilometers is not number", () => {
+            expect(() => chooseYourCar.carFuelConsumption("100", 5))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should throw error if consumptedFuelInLiters is not number", () => {
+            expect(() => chooseYourCar.carFuelConsumption(100, "5"))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should throw error if distanceInKilometers <= 0", () => {
+            expect(() => chooseYourCar.carFuelConsumption(0, 5))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should throw error if consumptedFuelInLiters <= 0", () => {
+            expect(() => chooseYourCar.carFuelConsumption(100, 0))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should return efficient enough if <= 7 L/100km", () => {
+            expect(chooseYourCar.carFuelConsumption(100, 7))
+                .to.equal("The car is efficient enough, it burns 7.00 liters/100 km.");
+        });
+
+        it("should return burns too much if > 7 L/100km", () => {
+            expect(chooseYourCar.carFuelConsumption(100, 10))
+                .to.equal("The car burns too much fuel - 10.00 liters!");
+        });
+
+        it("should calculate correctly with decimals", () => {
+            expect(chooseYourCar.carFuelConsumption(200, 10))
+                .to.equal("The car is efficient enough, it burns 5.00 liters/100 km.");
+        });
+    });
 });
