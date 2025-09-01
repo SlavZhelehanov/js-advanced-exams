@@ -18,4 +18,41 @@ describe("Tests for chooseYourCar", function () {
             expect(chooseYourCar.choosingType("Sedan", "color", 2009)).to.equal("This Sedan is too old for you, especially with that color color.");
         });
     });
+
+    describe("brandName()", function () {
+        it("should throw error if brands is not an array", () => {
+            expect(() => chooseYourCar.brandName("BMW", 0))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should throw error if brandIndex is not an integer", () => {
+            expect(() => chooseYourCar.brandName(["BMW", "Toyota"], "1"))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should throw error if brandIndex < 0", () => {
+            expect(() => chooseYourCar.brandName(["BMW"], -1))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should throw error if brandIndex >= brands.length", () => {
+            expect(() => chooseYourCar.brandName(["BMW"], 1))
+                .to.throw("Invalid Information!");
+        });
+
+        it("should remove brand at given index and return string", () => {
+            expect(chooseYourCar.brandName(["BMW", "Toyota", "Peugeot"], 1))
+                .to.equal("BMW, Peugeot");
+        });
+
+        it("should work with removing first element", () => {
+            expect(chooseYourCar.brandName(["BMW", "Toyota", "Peugeot"], 0))
+                .to.equal("Toyota, Peugeot");
+        });
+
+        it("should work with removing last element", () => {
+            expect(chooseYourCar.brandName(["BMW", "Toyota", "Peugeot"], 2))
+                .to.equal("BMW, Toyota");
+        });
+    });
 });
