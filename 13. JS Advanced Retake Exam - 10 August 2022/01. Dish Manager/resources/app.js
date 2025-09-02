@@ -6,6 +6,7 @@ function solve() {
     const task = document.getElementsByTagName('textarea')[0];
     const progressCount = document.getElementById('progress-count');
     const [inProgress, finished] = document.getElementsByTagName('ul');
+    const clearBtn = document.getElementById('clear-btn');
 
     formBtn.addEventListener('click', e => {
         e.preventDefault();
@@ -47,5 +48,10 @@ function solve() {
             li.querySelector('.complete-btn').remove();
             finished.appendChild(li);
         }
+    });
+
+    clearBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        finished.innerHTML = '';
     });
 }
