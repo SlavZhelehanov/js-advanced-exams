@@ -28,4 +28,17 @@ function solve() {
             task.value = '';
         }
     });
+
+    inProgress.addEventListener('click', e => {
+        if (e.target.classList.contains('edit-btn')) {
+            const li = e.target.parentNode;
+            const [genderAge, description] = li.querySelectorAll('p');
+
+            progressCount.textContent = +progressCount.textContent - 1;
+            [firstName.value, lastName.value] = li.querySelector('h4').textContent.split(' ');
+            [gender.value, age.value] = genderAge.textContent.split(', ');
+            task.value = description.textContent.split('Dish description: ')[1];
+            li.remove();
+        }
+    });
 }
