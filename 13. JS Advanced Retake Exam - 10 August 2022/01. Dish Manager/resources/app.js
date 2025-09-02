@@ -39,6 +39,13 @@ function solve() {
             [gender.value, age.value] = genderAge.textContent.split(', ');
             task.value = description.textContent.split('Dish description: ')[1];
             li.remove();
+        } else if (e.target.classList.contains('complete-btn')) {
+            const li = e.target.parentNode;
+
+            progressCount.textContent = +progressCount.textContent - 1;
+            li.querySelector('.edit-btn').remove();
+            li.querySelector('.complete-btn').remove();
+            finished.appendChild(li);
         }
     });
 }
