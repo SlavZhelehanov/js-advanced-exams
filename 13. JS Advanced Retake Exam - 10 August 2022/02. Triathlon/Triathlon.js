@@ -23,6 +23,17 @@ class Triathlon {
         if (!this.listOfFinalists.some(p => p.participantName === participantName)) return `${participantName} is not in the current finalists list`;
         return `${participantName} was rewarded with a trophy for his performance`;
     }
+
+    showRecord (criteria) {
+        if (this.listOfFinalists.length === 0) return `There are no finalists in this competition`;
+        if (criteria === "all") {
+            let output = [`List of all ${this.competitionName} finalists:`];
+            this.listOfFinalists.sort((a, b) => a.participantName.localeCompare(b.participantName)).forEach(p => output.push(p.participantName));
+            return output.join('\n');
+        }
+        if (!this.listOfFinalists.some(p => p.participantGender === criteria)) return `There are no ${criteria}'s that finished the competition`;
+        return `${this.listOfFinalists[0].participantName} is the first ${criteria} that finished the ${this.competitionName} triathlon`;
+    }
 }
 
 // Input 1
@@ -48,3 +59,30 @@ class Triathlon {
 // console.log(contest.completeness("Sasha", 70));
 // console.log(contest.rewarding("Peter"));
 // console.log(contest.rewarding("Sasha"));
+
+// Input 4
+// const contest = new Triathlon("Dynamos");
+// console.log(contest.showRecord("all"));
+
+// Input 5
+// const contest = new Triathlon("Dynamos");
+// console.log(contest.addParticipant("Peter", "male"));
+// console.log(contest.addParticipant("Sasha", "female"));
+// console.log(contest.completeness("Peter", 100));
+// console.log(contest.completeness("Sasha", 90));
+// console.log(contest.rewarding("Peter"));
+// console.log(contest.rewarding("Sasha"));
+// console.log(contest.showRecord("all"));
+
+// Input 6
+// const contest = new Triathlon("Dynamos");
+// console.log(contest.addParticipant("Peter", "male"));
+// console.log(contest.addParticipant("Sasha", "female"));
+// console.log(contest.addParticipant("George", "male"));
+// console.log(contest.completeness("Peter", 100));
+// console.log(contest.completeness("Sasha", 90));
+// console.log(contest.completeness("George", 95));
+// console.log(contest.rewarding("Peter"));
+// console.log(contest.rewarding("Sasha"));
+// console.log(contest.rewarding("George"));
+// console.log(contest.showRecord("male"));
