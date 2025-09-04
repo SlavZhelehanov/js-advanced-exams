@@ -23,44 +23,60 @@ describe("Tests for movieTheater", function () {
 
     describe("moneySpent()", function () {
         it("should throw an error for invalid inputs", function () {
-            expect(() => movieTheater.moneySpent (5, 5, 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, 5, "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, 5, ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, "5", 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, "5", "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, "5", ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, ["5"], 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (5, ["5"], "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", 5, 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", 5, "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", 5, ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", "5", 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", "5", "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", "5", ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", ["5"], 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", ["5"], "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent ("5", ["5"], ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], 5, 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], 5, "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], 5, ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], "5", 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], "5", "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], "5", ["5"])).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], ["5"], 5)).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], ["5"], "5")).to.throw("Invalid input");
-            expect(() => movieTheater.moneySpent (["5"], ["5"], ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, 5, 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, 5, "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, 5, ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, "5", 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, "5", "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, "5", ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, ["5"], 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(5, ["5"], "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", 5, 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", 5, "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", 5, ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", "5", 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", "5", "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", "5", ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", ["5"], 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", ["5"], "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent("5", ["5"], ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], 5, 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], 5, "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], 5, ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], "5", 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], "5", "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], "5", ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], ["5"], 5)).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], ["5"], "5")).to.throw("Invalid input");
+            expect(() => movieTheater.moneySpent(["5"], ["5"], ["5"])).to.throw("Invalid input");
         });
         it("should apply 20% discount for total cost bigger than 50 levs", () => {
-            expect(movieTheater.moneySpent (4, [], [])).to.equal("The total cost for the purchase with applied discount is 48.00");
-            expect(movieTheater.moneySpent (1, ["Nachos", "Nachos", "Nachos", "Nachos", "Nachos", "Nachos", "Popcorn"], [])).to.equal("The total cost for the purchase with applied discount is 44.40");
-            expect(movieTheater.moneySpent (3, [], ["Soda", "Soda", "Water"])).to.equal("The total cost for the purchase with applied discount is 41.20");
-            expect(movieTheater.moneySpent (3, ["Nachos"], ["Soda"])).to.equal("The total cost for the purchase with applied discount is 42.80");
+            expect(movieTheater.moneySpent(4, [], [])).to.equal("The total cost for the purchase with applied discount is 48.00");
+            expect(movieTheater.moneySpent(1, ["Nachos", "Nachos", "Nachos", "Nachos", "Nachos", "Nachos", "Popcorn"], [])).to.equal("The total cost for the purchase with applied discount is 44.40");
+            expect(movieTheater.moneySpent(3, [], ["Soda", "Soda", "Water"])).to.equal("The total cost for the purchase with applied discount is 41.20");
+            expect(movieTheater.moneySpent(3, ["Nachos"], ["Soda"])).to.equal("The total cost for the purchase with applied discount is 42.80");
         });
         it("should return total cost for all purchases less or equal to 50 levs", () => {
-            expect(movieTheater.moneySpent (3, [], [])).to.equal("The total cost for the purchase is 45.00");
-            expect(movieTheater.moneySpent (2, ["Nachos", "Popcorn"], [])).to.equal("The total cost for the purchase is 40.50");
-            expect(movieTheater.moneySpent (2, [], ["Soda", "Water"])).to.equal("The total cost for the purchase is 34.00");
-            expect(movieTheater.moneySpent (2, ["Popcorn"], ["Soda"])).to.equal("The total cost for the purchase is 37.00");
+            expect(movieTheater.moneySpent(3, [], [])).to.equal("The total cost for the purchase is 45.00");
+            expect(movieTheater.moneySpent(2, ["Nachos", "Popcorn"], [])).to.equal("The total cost for the purchase is 40.50");
+            expect(movieTheater.moneySpent(2, [], ["Soda", "Water"])).to.equal("The total cost for the purchase is 34.00");
+            expect(movieTheater.moneySpent(2, ["Popcorn"], ["Soda"])).to.equal("The total cost for the purchase is 37.00");
+        });
+    });
+
+    describe("reservation()", function () {
+        it("should throw an error for invalid inputs", function () {
+            expect(() => movieTheater.reservation(["G"], "5")).to.throw("Invalid input");
+            expect(() => movieTheater.reservation(["G"], ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.reservation(5, 5)).to.throw("Invalid input");
+            expect(() => movieTheater.reservation(5, "5")).to.throw("Invalid input");
+            expect(() => movieTheater.reservation(5, ["5"])).to.throw("Invalid input");
+            expect(() => movieTheater.reservation("5", 5)).to.throw("Invalid input");
+            expect(() => movieTheater.reservation("5", "5")).to.throw("Invalid input");
+            expect(() => movieTheater.reservation("5", ["5"])).to.throw("Invalid input");
+        });
+        it("should return the row with the largest number", () => {
+            expect(movieTheater.reservation([{ rowNumber: 1, freeSeats: 7 }, { rowNumber: 2, freeSeats: 5 }], 3)).to.equal(2);
         });
     });
 });
