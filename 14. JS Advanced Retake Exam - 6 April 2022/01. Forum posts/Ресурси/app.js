@@ -23,4 +23,16 @@ function solve() {
             [postTitle.value, postCategory.value, postContent.value] = ['', '', '', ''];
         }
     });
+
+    reviewList.addEventListener("click", (e) => {
+        if (e.target.classList.contains("edit")) {
+            const li = e.target.parentNode;
+            const [pCategory, pContent] = li.querySelectorAll('p');
+
+            postTitle.value = li.querySelector('h4').textContent;
+            postCategory.value = pCategory.textContent.split('Category: ')[1];
+            postContent.value = pContent.textContent.split('Content: ')[1];
+            li.remove();
+        }
+    });
 }
