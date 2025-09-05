@@ -6,6 +6,7 @@ function solve() {
     const postContent = document.getElementById("post-content");
     const publishBtn = document.getElementById("publish-btn");
     const reviewList = document.getElementById("review-list");
+    const publishedList = document.getElementById("published-list");
 
     publishBtn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -33,6 +34,12 @@ function solve() {
             postCategory.value = pCategory.textContent.split('Category: ')[1];
             postContent.value = pContent.textContent.split('Content: ')[1];
             li.remove();
+        } else if (e.target.classList.contains("approve")) {
+            const li = e.target.parentNode;
+
+            li.querySelector('.edit').remove();
+            li.querySelector('.approve').remove();
+            publishedList.appendChild(li);
         }
     });
 }
