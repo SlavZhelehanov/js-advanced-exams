@@ -7,6 +7,7 @@ function solve() {
     const publishBtn = document.getElementById("publish-btn");
     const reviewList = document.getElementById("review-list");
     const publishedList = document.getElementById("published-list");
+    const clearBtn = document.getElementById("clear-btn");
 
     publishBtn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -42,4 +43,6 @@ function solve() {
             publishedList.appendChild(li);
         }
     });
+
+    clearBtn.addEventListener("click", () => {publishedList.innerHTML = "";});
 }
