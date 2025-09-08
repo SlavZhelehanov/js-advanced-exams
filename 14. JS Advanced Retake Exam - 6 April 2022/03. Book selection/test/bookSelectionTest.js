@@ -48,7 +48,28 @@ describe("Tests for bookSelection", function () {
         });
     });
 
-    // describe("suitableTitles()", function () {
-    //
-    // });
+    describe("suitableTitles()", function () {
+        const books = [
+            { title: "The Da Vinci Code", genre: "Thriller" },
+            { title: "Harry Potter", genre: "Fantasy" },
+            { title: "It", genre: "Horror" },
+        ];
+
+        it("should throw error if books is not an array", function () {
+            expect(() => bookSelection.suitableTitles("notArray", "Thriller")).to.throw("Invalid input");
+        });
+
+        it("should throw error if wantedGenre is not a string", function () {
+            expect(() => bookSelection.suitableTitles(books, 123)).to.throw("Invalid input");
+        });
+
+        it("should return titles with matching genre", function () {
+            expect(bookSelection.suitableTitles(books, "Thriller")).to.deep.equal(["The Da Vinci Code"]);
+            expect(bookSelection.suitableTitles(books, "Horror")).to.deep.equal(["It"]);
+        });
+
+        it("should return empty array if no matching genre", function () {
+            expect(bookSelection.suitableTitles(books, "Romance")).to.deep.equal([]);
+        });
+    });
 });
