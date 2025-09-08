@@ -29,10 +29,25 @@ describe("Tests for bookSelection", function () {
         });
     });
 
-    // describe("isItAffordable()", function () {
-    //
-    // });
-    //
+    describe("isItAffordable()", function () {
+        it("should throw error if price is not a number", function () {
+            expect(() => bookSelection.isItAffordable("10", 20)).to.throw("Invalid input");
+        });
+
+        it("should throw error if budget is not a number", function () {
+            expect(() => bookSelection.isItAffordable(10, "20")).to.throw("Invalid input");
+        });
+
+        it("should return not enough money if price > budget", function () {
+            expect(bookSelection.isItAffordable(50, 30)).to.equal("You don't have enough money");
+        });
+
+        it("should return success message if budget >= price", function () {
+            expect(bookSelection.isItAffordable(20, 30)).to.equal("Book bought. You have 10$ left");
+            expect(bookSelection.isItAffordable(30, 30)).to.equal("Book bought. You have 0$ left");
+        });
+    });
+
     // describe("suitableTitles()", function () {
     //
     // });
