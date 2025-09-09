@@ -3,6 +3,7 @@ function solve() {
     const title = document.getElementById('title');
     const message = document.getElementById('message');
     const addBtn = document.getElementById('add');
+    const resetBtn = document.getElementById('reset');
     const [listOfMails, sentMails, deletedMails] = document.getElementsByTagName("ul");
 
     addBtn.addEventListener('click', (e) => {
@@ -21,6 +22,11 @@ function solve() {
 
             [recipientName.value, title.value, message.value] = ['', '', ''];
         }
+    });
+
+    resetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        [recipientName.value, title.value, message.value] = ['', '', ''];
     });
 }
 
