@@ -14,3 +14,4 @@
 - [x] 12. JS Advanced Regular Exam - 22 October 2022
 - [ ] 13. JS Advanced Retake Exam - 10 August 2022
 - [x] 14. JS Advanced Retake Exam - 6 April 2022
+- [ ] 15. JS Advanced Regular Exam - 13 March 2022
