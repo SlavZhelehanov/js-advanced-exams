@@ -28,6 +28,22 @@ function solve() {
         e.preventDefault();
         [recipientName.value, title.value, message.value] = ['', '', ''];
     });
+
+    listOfMails.addEventListener('click', (e) => {
+        if (e.target.id === 'send') {
+            const li = e.target.parentElement.parentElement;
+            const [h4Title, h4Name] = li.querySelectorAll('h4');
+
+            sentMails.innerHTML += `<li>
+                        <span>To: ${h4Name.textContent.split('Name: ')[1]}</span>
+                        <span>Title: ${h4Title.textContent.split('Title: ')[1]}</span>
+                        <div class="btn">
+                            <button type="submit" class="delete">Delete</button>
+                        </div>
+                    </li>`;
+            li.remove();
+        }
+    });
 }
 
 solve()
