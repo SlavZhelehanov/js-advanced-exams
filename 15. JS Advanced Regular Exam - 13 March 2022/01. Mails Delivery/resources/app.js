@@ -42,6 +42,28 @@ function solve() {
                         </div>
                     </li>`;
             li.remove();
+        } else if (e.target.id === 'delete') {
+            const li = e.target.parentElement.parentElement;
+            const [h4Title, h4Name] = li.querySelectorAll('h4');
+
+            deletedMails.innerHTML += `<li>
+                        <span>To: ${h4Name.textContent.split('Name: ')[1]}</span>
+                        <span>Title: ${h4Title.textContent.split('Title: ')[1]}</span>
+                    </li>`;
+            li.remove();
+        }
+    });
+
+    sentMails.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete')) {
+            const li = e.target.parentElement.parentElement;
+            const [spanName, spanTitle] = li.querySelectorAll('span');
+
+            deletedMails.innerHTML += `<li>
+                        <span>To: ${spanName.textContent.split('To: ')[1]}</span>
+                        <span>Title: ${spanTitle.textContent.split('Title: ')[1]}</span>
+                    </li>`;
+            li.remove();
         }
     });
 }
