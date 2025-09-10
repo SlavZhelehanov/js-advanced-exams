@@ -24,6 +24,14 @@ class CarDealership {
         this.availableCars = this.availableCars.filter(car => car.model !== model);
         return `${model} was sold for ${car.price.toFixed(2)}$`;
     }
+
+    currentCar (){
+        if (this.availableCars.length <= 1) return "There are no available cars";
+        let output = ["-Available cars:"];
+
+        output.push(this.availableCars.map(car => `---${car.model} - ${car.horsepower} HP - ${car.mileage.toFixed(2)} km - ${car.price.toFixed(2)}$`).join("\n"));
+        return output.join("\n");
+    }
 }
 
 // Input 1
@@ -39,3 +47,10 @@ class CarDealership {
 // dealership.addCar('Audi A3', 120, 4900, 240000);
 // console.log(dealership.sellCar('Toyota Corolla', 230000));
 // console.log(dealership.sellCar('Mercedes C63', 110000));
+
+// Input 3
+// let dealership = new CarDealership('SoftAuto');
+// dealership.addCar('Toyota Corolla', 100, 3500, 190000);
+// dealership.addCar('Mercedes C63', 300, 29000, 187000);
+// dealership.addCar('Audi A3', 120, 4900, 240000);
+// console.log(dealership.currentCar());
