@@ -46,4 +46,27 @@ describe('rentCar Tests', function () {
                 .to.throw('Invalid input!');
         });
     });
+
+    describe('checkBudget', function () {
+        it('should return success message if budget is enough', function () {
+            expect(rentCar.checkBudget(20, 2, 50))
+                .to.equal('You rent a car!');
+            expect(rentCar.checkBudget(25, 2, 50))
+                .to.equal('You rent a car!');
+        });
+
+        it('should return failure message if budget is not enough', function () {
+            expect(rentCar.checkBudget(50, 3, 100))
+                .to.equal('You need a bigger budget!');
+        });
+
+        it('should throw error if any input is not an integer', function () {
+            expect(() => rentCar.checkBudget('20', 2, 50))
+                .to.throw('Invalid input!');
+            expect(() => rentCar.checkBudget(20, '2', 50))
+                .to.throw('Invalid input!');
+            expect(() => rentCar.checkBudget(20, 2, '50'))
+                .to.throw('Invalid input!');
+        });
+    });
 });
