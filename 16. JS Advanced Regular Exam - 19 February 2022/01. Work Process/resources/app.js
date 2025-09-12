@@ -31,6 +31,12 @@ function solve() {
             [fname.value, lname.value, email.value, birth.value, position.value, salary.value] = [tds[0].textContent, tds[1].textContent, tds[2].textContent, tds[3].textContent, tds[4].textContent, tds[5].textContent];
             sum.textContent = (+sum.textContent - +salary.value).toFixed(2);
             tr.remove();
+        } else if (e.target.classList.contains('fired')) {
+            const tr = e.target.parentElement.parentElement;
+            const tds = tr.getElementsByTagName('td');
+
+            sum.textContent = (+sum.textContent - +tds[5].textContent).toFixed(2);
+            tr.remove();
         }
     });
 }
