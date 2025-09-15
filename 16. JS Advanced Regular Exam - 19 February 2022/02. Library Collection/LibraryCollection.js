@@ -27,6 +27,20 @@ class LibraryCollection {
         this.books = this.books.filter(book => book.bookName !== bookName);
         return `${bookName} remove from the collection.`;
     }
+
+    getStatistics(bookAuthor) {
+        let output = [];
+
+        if (!bookAuthor) {
+            output.push(`The book collection has ${this.capacity - this.books.length} empty spots left.`);
+            [...this.books].sort((a, b) => a.bookName.localeCompare(b.bookName)).forEach(({bookName, bookAuthor, payed}) => output.push(`${bookName} == ${bookAuthor} - ${payed ? "Has Paid" : "Not Paid"}.`));
+        } else if (!this.books.some(book => book.bookAuthor === bookAuthor)) {
+            throw new Error(`${bookAuthor} is not in the collection.`);
+        } else {
+            this.books.filter(book => book.bookAuthor === bookAuthor).forEach(({bookName, bookAuthor, payed}) => output.push(`${bookName} == ${bookAuthor} - ${payed ? "Has Paid" : "Not Paid"}.`));
+        }
+        return output.join('\n');
+    }
 }
 
 // Input 1
@@ -48,3 +62,16 @@ class LibraryCollection {
 // library.payBook('Don Quixote');
 // console.log(library.removeBook('Don Quixote'));
 // console.log(library.removeBook('In Search of Lost Time'));
+
+// Input 4
+// const library = new LibraryCollection(2)
+// console.log(library.addBook('Don Quixote', 'Miguel de Cervantes'));
+// console.log(library.getStatistics('Miguel de Cervantes'));
+
+// Input 5
+// const library = new LibraryCollection(5)
+// library.addBook('Don Quixote', 'Miguel de Cervantes');
+// library.payBook('Don Quixote');
+// library.addBook('In Search of Lost Time', 'Marcel Proust');
+// library.addBook('Ulysses', 'James Joyce');
+// console.log(library.getStatistics());
