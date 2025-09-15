@@ -9,6 +9,15 @@ class LibraryCollection {
         this.books.push({bookName, bookAuthor, payed: false});
         return `The ${bookName}, with an author ${bookAuthor}, collect.`
     }
+
+    payBook(bookName) {
+        let book = this.books.find((book) => book.bookName === bookName);
+
+        if (!book) throw new Error(`${bookName} is not in the collection.`);
+        if (book.payed) throw new Error(`${bookName} has already been paid.`);
+        book.payed = true;
+        return `${bookName} has been successfully paid.`;
+    }
 }
 
 // Input 1
@@ -16,3 +25,9 @@ class LibraryCollection {
 // console.log(library.addBook('In Search of Lost Time', 'Marcel Proust'));
 // console.log(library.addBook('Don Quixote', 'Miguel de Cervantes'));
 // console.log(library.addBook('Ulysses', 'James Joyce'));
+
+// Input 2
+// const library = new LibraryCollection(2)
+// library.addBook('In Search of Lost Time', 'Marcel Proust');
+// console.log(library.payBook('In Search of Lost Time'));
+// console.log(library.payBook('Don Quixote'));
