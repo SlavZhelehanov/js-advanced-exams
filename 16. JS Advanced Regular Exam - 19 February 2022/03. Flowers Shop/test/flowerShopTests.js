@@ -22,4 +22,16 @@ describe('flowerShop Tests', function () {
             expect(result).to.equal('You need $12.00 to buy Rose!');
         });
     });
+
+    describe('checkFlowersAvailable', () => {
+        it('should confirm if flower exists in gardenArr', () => {
+            const result = flowerShop.checkFlowersAvailable('Rose', ['Rose', 'Lily', 'Orchid']);
+            expect(result).to.equal('The Rose are available!');
+        });
+
+        it('should state when flower is not available', () => {
+            const result = flowerShop.checkFlowersAvailable('Daisy', ['Rose', 'Lily', 'Orchid']);
+            expect(result).to.equal('The Daisy are sold! You need to purchase more!');
+        });
+    });
 });
