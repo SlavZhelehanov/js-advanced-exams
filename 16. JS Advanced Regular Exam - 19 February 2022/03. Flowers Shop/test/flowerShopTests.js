@@ -34,4 +34,25 @@ describe('flowerShop Tests', function () {
             expect(result).to.equal('The Daisy are sold! You need to purchase more!');
         });
     });
+
+    describe('sellFlowers', () => {
+        it('should throw error if gardenArr is not an array', () => {
+            expect(() => flowerShop.sellFlowers('Rose', 1)).to.throw('Invalid input!');
+        });
+
+        it('should throw error if space is not an integer', () => {
+            expect(() => flowerShop.sellFlowers(['Rose','Lily'], '1')).to.throw('Invalid input!');
+            expect(() => flowerShop.sellFlowers(['Rose','Lily'], 1.5)).to.throw('Invalid input!');
+        });
+
+        it('should throw error if space is out of range', () => {
+            expect(() => flowerShop.sellFlowers(['Rose','Lily'], -1)).to.throw('Invalid input!');
+            expect(() => flowerShop.sellFlowers(['Rose','Lily'], 5)).to.throw('Invalid input!');
+        });
+
+        it('should remove the correct flower and return joined string', () => {
+            const result = flowerShop.sellFlowers(['Rose', 'Lily', 'Orchid'], 1);
+            expect(result).to.equal('Rose / Orchid');
+        });
+    });
 });
