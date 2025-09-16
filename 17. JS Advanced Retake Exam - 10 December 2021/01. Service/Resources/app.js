@@ -40,4 +40,10 @@ function solve() {
             completedOrders.appendChild(container);
         }
     });
+
+    completedOrders.getElementsByClassName("clear-btn")[0].addEventListener("click", e => {
+        completedOrders.innerHTML = `<h2>Completed orders:</h2>
+                <img src="./style/img/completed-order.png" alt="completed-order">
+                <button class="clear-btn">Clear</button>`;
+    });
 }
