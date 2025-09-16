@@ -22,4 +22,14 @@ function solve() {
             [typeProduct.value, description.value, clientName.value, clientPhone.value] = ["", "", "", ""];
         }
     });
+
+    receivedOrders.addEventListener("click", e => {
+        if (e.target.classList.contains("start-btn")) {
+            const container = e.target.parentNode;
+            const [start, finish] = container.getElementsByTagName("button");
+
+            start.disabled = true;
+            finish.disabled = false;
+        }
+    });
 }
