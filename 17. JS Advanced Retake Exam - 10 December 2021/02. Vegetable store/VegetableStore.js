@@ -16,7 +16,7 @@ class VegetableStore {
             else {
                 vegetable.quantity += +quantity;
 
-                if (+price < vegetable.price) vegetable.price = +price;
+                if (vegetable.price < +price) vegetable.price = +price;
             }
             if (!output.includes(type)) output.push(type);
         }
@@ -48,6 +48,13 @@ class VegetableStore {
         vegetable.quantity = vegetable.quantity <= +quantity ? 0 : vegetable.quantity - +quantity;
         return vegetable.quantity === 0 ? `The entire quantity of the ${type} has been removed.` : `Some quantity of the ${type} has been removed.`;
     }
+
+    revision () {
+        let output = ["Available vegetables:"];
+
+        [...this.availableProducts].sort((a, b) => a.price - b.price).forEach(({type, quantity, price}) => output.push(`${type}-${quantity}-$${price}`));
+        return `${output.join('\n')}\nThe owner of the store is ${this.owner}, and the location is ${this.location}.`;
+    }
 }
 
 // Input 1
@@ -67,3 +74,11 @@ class VegetableStore {
 // console.log(vegStore.rottingVegetable("Okra", 1));
 // console.log(vegStore.rottingVegetable("Okra", 2.5));
 // console.log(vegStore.buyingVegetables(["Beans 8", "Okra 1.5"]));
+
+// Input 4
+let vegStore = new VegetableStore("Jerrie Munro", "1463 Pette Kyosheta, Sofia");
+console.log(vegStore.loadingVegetables(["Okra 2.5 3.5", "Beans 10 2.8", "Celery 5.5 2.2", "Celery 0.5 2.5"]));
+console.log(vegStore.rottingVegetable("Okra", 1));
+console.log(vegStore.rottingVegetable("Okra", 2.5));
+console.log(vegStore.buyingVegetables(["Beans 8", "Celery 1.5"]));
+console.log(vegStore.revision());
