@@ -5,7 +5,7 @@ class VegetableStore {
         this.availableProducts = [];
     }
 
-    loadingVegetables (vegetables) {
+    loadingVegetables(vegetables) {
         let output = [];
 
         for (const data of vegetables) {
@@ -24,7 +24,7 @@ class VegetableStore {
         return `Successfully added ${output.join(', ')}`;
     }
 
-    buyingVegetables (selectedProducts){
+    buyingVegetables(selectedProducts) {
         let totalPrice = 0;
 
         for (const data of selectedProducts) {
@@ -39,6 +39,15 @@ class VegetableStore {
         }
         return `Great choice! You must pay the following amount $${totalPrice.toFixed(2)}.`;
     }
+
+    rottingVegetable(type, quantity) {
+        const vegetable = this.availableProducts.find((product) => product.type === type);
+
+        if (!vegetable) throw new Error(`${type} is not available in the store.`);
+
+        vegetable.quantity = vegetable.quantity <= +quantity ? 0 : vegetable.quantity - +quantity;
+        return vegetable.quantity === 0 ? `The entire quantity of the ${type} has been removed.` : `Some quantity of the ${type} has been removed.`;
+    }
 }
 
 // Input 1
@@ -51,3 +60,10 @@ class VegetableStore {
 // console.log(vegStore.buyingVegetables(["Okra 1"]));
 // console.log(vegStore.buyingVegetables(["Beans 8", "Okra 1.5"]));
 // console.log(vegStore.buyingVegetables(["Banana 1", "Beans 2"]));
+
+// Input 3
+// let vegStore = new VegetableStore("Jerrie Munro", "1463 Pette Kyosheta, Sofia");
+// console.log(vegStore.loadingVegetables(["Okra 2.5 3.5", "Beans 10 2.8", "Celery 5.5 2.2", "Celery 0.5 2.5"]));
+// console.log(vegStore.rottingVegetable("Okra", 1));
+// console.log(vegStore.rottingVegetable("Okra", 2.5));
+// console.log(vegStore.buyingVegetables(["Beans 8", "Okra 1.5"]));
