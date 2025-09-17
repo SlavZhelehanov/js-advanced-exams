@@ -20,4 +20,21 @@ describe('companyAdministration tests', () => {
                 .to.throw("We are not looking for workers for this position.");
         });
     });
+
+    describe("calculateSalary", function () {
+        it("should calculate correct salary for valid hours ≤ 160", function () {
+            expect(companyAdministration.calculateSalary(10)).to.equal(150);
+            expect(companyAdministration.calculateSalary(160)).to.equal(2400);
+        });
+
+        it("should add bonus if hours > 160", function () {
+            expect(companyAdministration.calculateSalary(170)).to.equal(170 * 15 + 1000);
+        });
+
+        it("should throw error for invalid hours (not a number or negative)", function () {
+            expect(() => companyAdministration.calculateSalary("100")).to.throw("Invalid hours");
+            expect(() => companyAdministration.calculateSalary(-5)).to.throw("Invalid hours");
+            expect(() => companyAdministration.calculateSalary(undefined)).to.throw("Invalid hours");
+        });
+    });
 });
