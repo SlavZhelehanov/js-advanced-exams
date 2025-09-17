@@ -23,8 +23,31 @@ class VegetableStore {
 
         return `Successfully added ${output.join(', ')}`;
     }
+
+    buyingVegetables (selectedProducts){
+        let totalPrice = 0;
+
+        for (const data of selectedProducts) {
+            const [type, quantity] = data.split(' ');
+            const vegetable = this.availableProducts.find((product) => product.type === type);
+
+            if (!vegetable) throw new Error(`${type} is not available in the store, your current bill is $${totalPrice.toFixed(2)}.`);
+            if (vegetable.quantity < +quantity) throw new Error(`The quantity ${quantity} for the vegetable ${type} is not available in the store, your current bill is $${totalPrice.toFixed(2)}.`);
+
+            totalPrice += vegetable.price * quantity;
+            vegetable.quantity -= +quantity;
+        }
+        return `Great choice! You must pay the following amount $${totalPrice.toFixed(2)}.`;
+    }
 }
 
 // Input 1
 // let vegStore = new VegetableStore("Jerrie Munro", "1463 Pette Kyosheta, Sofia");
 // console.log(vegStore.loadingVegetables(["Okra 2.5 3.5", "Beans 10 2.8", "Celery 5.5 2.2", "Celery 0.5 2.5"]));
+
+// Input 2
+// let vegStore = new VegetableStore("Jerrie Munro", "1463 Pette Kyosheta, Sofia");
+// console.log(vegStore.loadingVegetables(["Okra 2.5 3.5", "Beans 10 2.8", "Celery 5.5 2.2", "Celery 0.5 2.5"]));
+// console.log(vegStore.buyingVegetables(["Okra 1"]));
+// console.log(vegStore.buyingVegetables(["Beans 8", "Okra 1.5"]));
+// console.log(vegStore.buyingVegetables(["Banana 1", "Beans 2"]));
