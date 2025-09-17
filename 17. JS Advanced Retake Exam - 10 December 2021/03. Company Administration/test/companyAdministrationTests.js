@@ -37,4 +37,25 @@ describe('companyAdministration tests', () => {
             expect(() => companyAdministration.calculateSalary(undefined)).to.throw("Invalid hours");
         });
     });
+
+    describe("firedEmployee", function () {
+        it("should remove the employee at the given index", function () {
+            expect(companyAdministration.firedEmployee(["Petar", "Ivan", "George"], 1))
+                .to.equal("Petar, George");
+        });
+
+        it("should work when removing first or last element", function () {
+            expect(companyAdministration.firedEmployee(["A", "B", "C"], 0))
+                .to.equal("B, C");
+            expect(companyAdministration.firedEmployee(["A", "B", "C"], 2))
+                .to.equal("A, B");
+        });
+
+        it("should throw error for invalid input", function () {
+            expect(() => companyAdministration.firedEmployee("not array", 1)).to.throw("Invalid input");
+            expect(() => companyAdministration.firedEmployee(["A", "B"], "1")).to.throw("Invalid input");
+            expect(() => companyAdministration.firedEmployee(["A", "B"], -1)).to.throw("Invalid input");
+            expect(() => companyAdministration.firedEmployee(["A", "B"], 2)).to.throw("Invalid input");
+        });
+    });
 });
