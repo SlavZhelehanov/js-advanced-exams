@@ -5,13 +5,14 @@ function solve() {
     const addBtn = document.getElementById('add-btn');
     const allHitsContainer = document.getElementsByClassName('all-hits-container')[0];
     const totalLikes = document.getElementById('total-likes').getElementsByTagName('p')[0];
+    const savedContainer = document.getElementsByClassName('saved-container')[0];
 
     addBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
         if (genre.value !== '' && name.value !== '' && author.value !== '' && date.value !== '') {
             allHitsContainer.innerHTML += `<div class="hits-info">
-<img src="./static/img/img.png" alt="${name.value}" />
+<img src="./static/img/img.png" />
 <h2>Genre: ${genre.value}</h2>
 <h2>Name: ${name.value}</h2>
 <h2>Author: ${author.value}</h2>
@@ -25,9 +26,24 @@ function solve() {
     });
 
     allHitsContainer.addEventListener('click', (e) => {
-        if(e.target.classList.contains('like-btn')){
+        if (e.target.classList.contains('like-btn')) {
             e.target.disabled = true;
             totalLikes.textContent = `Total Likes: ${+totalLikes.textContent.split(": ")[1] + 1}`;
+        } else if (e.target.classList.contains('save-btn')) {
+            const div = e.target.parentElement;
+            const [save, like, del] = div.getElementsByTagName('button');
+
+            save.remove();
+            like.remove();
+            savedContainer.appendChild(div);
+        } else if (e.target.classList.contains('delete-btn')) {
+            e.target.parentElement.remove();
+        }
+    });
+
+    savedContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete-btn')) {
+            e.target.parentElement.remove();
         }
     });
 }
