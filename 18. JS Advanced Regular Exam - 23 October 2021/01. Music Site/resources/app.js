@@ -4,6 +4,7 @@ function solve() {
     const [genre, name, author, date] = document.getElementsByTagName('input');
     const addBtn = document.getElementById('add-btn');
     const allHitsContainer = document.getElementsByClassName('all-hits-container')[0];
+    const totalLikes = document.getElementById('total-likes').getElementsByTagName('p')[0];
 
     addBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -20,6 +21,13 @@ function solve() {
 <button class="delete-btn">Delete</button>
 </div>`;
             [genre.value, name.value, author.value, date.value] = ["", "", "", ""];
+        }
+    });
+
+    allHitsContainer.addEventListener('click', (e) => {
+        if(e.target.classList.contains('like-btn')){
+            e.target.disabled = true;
+            totalLikes.textContent = `Total Likes: ${+totalLikes.textContent.split(": ")[1] + 1}`;
         }
     });
 }
