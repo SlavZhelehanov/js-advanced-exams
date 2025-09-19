@@ -39,6 +39,13 @@ class SummerCamp {
             return "There is no winner.";
         }
     }
+
+    toString () {
+        let output = [`${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}`];
+
+        [...this.listOfParticipants].sort((a, b) => b.wins - a.wins).forEach(({name, condition, power, wins}) => {output.push(`${name} - ${condition} - ${power} - ${wins}`)});
+        return output.join("\n");
+    }
 }
 
 // Input 1
@@ -62,3 +69,14 @@ class SummerCamp {
 // console.log(summerCamp.timeToPlay("WaterBalloonFights", "Petar Petarson", "Sara Dickinson"));
 // console.log(summerCamp.registerParticipant("Dimitur Kostov", "student", 300));
 // console.log(summerCamp.timeToPlay("WaterBalloonFights", "Petar Petarson", "Dimitur Kostov"));
+
+// Input 4
+// const summerCamp = new SummerCamp("Jane Austen", "Pancharevo Sofia 1137, Bulgaria");
+// console.log(summerCamp.registerParticipant("Petar Petarson", "student", 300));
+// console.log(summerCamp.timeToPlay("Battleship", "Petar Petarson"));
+// console.log(summerCamp.registerParticipant("Sara Dickinson", "child", 200));
+// console.log(summerCamp.timeToPlay("WaterBalloonFights", "Petar Petarson", "Sara Dickinson"));
+// console.log(summerCamp.registerParticipant("Dimitur Kostov", "student", 300));
+// console.log(summerCamp.timeToPlay("WaterBalloonFights", "Petar Petarson", "Dimitur Kostov"));
+//
+// console.log(summerCamp.toString());
