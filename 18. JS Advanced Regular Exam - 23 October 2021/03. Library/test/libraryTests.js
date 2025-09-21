@@ -35,4 +35,24 @@ describe('library tests', () => {
             expect(library.findBook(["Troy", "Life Style"], "Unknown")).to.equal("The book you are looking for is not here!");
         });
     });
+
+    describe("arrangeTheBooks()", function () {
+        it("should throw error if countBooks is not an integer", function () {
+            expect(() => library.arrangeTheBooks("10")).to.throw("Invalid input");
+            expect(() => library.arrangeTheBooks(5.5)).to.throw("Invalid input");
+        });
+
+        it("should throw error if countBooks is negative", function () {
+            expect(() => library.arrangeTheBooks(-1)).to.throw("Invalid input");
+        });
+
+        it("should return success message if books fit on shelves", function () {
+            expect(library.arrangeTheBooks(40)).to.equal("Great job, the books are arranged.");
+            expect(library.arrangeTheBooks(0)).to.equal("Great job, the books are arranged.");
+        });
+
+        it("should return insufficient space if books exceed shelf capacity", function () {
+            expect(library.arrangeTheBooks(41)).to.equal("Insufficient space, more shelves need to be purchased.");
+        });
+    });
 });
