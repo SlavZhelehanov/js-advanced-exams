@@ -21,4 +21,18 @@ describe('library tests', () => {
             expect(library.calcPriceOfBook("ModernBook", 2000)).to.equal("Price of ModernBook is 20.00");
         });
     });
+
+    describe("findBook()", function () {
+        it("should throw error if booksArr is empty", function () {
+            expect(() => library.findBook([], "Troy")).to.throw("No books currently available");
+        });
+
+        it("should return success message if desiredBook is found", function () {
+            expect(library.findBook(["Troy", "Life Style"], "Troy")).to.equal("We found the book you want.");
+        });
+
+        it("should return not found message if desiredBook is missing", function () {
+            expect(library.findBook(["Troy", "Life Style"], "Unknown")).to.equal("The book you are looking for is not here!");
+        });
+    });
 });
