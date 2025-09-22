@@ -25,4 +25,14 @@ function solve() {
             [model.value, year.value, price.value, description.value] = ['', '', '', ''];
         }
     });
+
+    furnitureList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('moreBtn')) {
+            const moreLessBtn = e.target;
+            const hiddenTr = moreLessBtn.parentElement.parentElement.nextElementSibling;
+
+            moreLessBtn.textContent = "Less info";
+            hiddenTr.style.display = 'contents';
+        }
+    });
 }
