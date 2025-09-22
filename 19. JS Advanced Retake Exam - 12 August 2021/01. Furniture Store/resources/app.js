@@ -27,12 +27,18 @@ function solve() {
     });
 
     furnitureList.addEventListener('click', (e) => {
-        if (e.target.classList.contains('moreBtn')) {
+        if (e.target.classList.contains('moreBtn') && e.target.textContent === 'More Info') {
             const moreLessBtn = e.target;
             const hiddenTr = moreLessBtn.parentElement.parentElement.nextElementSibling;
 
-            moreLessBtn.textContent = "Less info";
+            moreLessBtn.textContent = "Less Info";
             hiddenTr.style.display = 'contents';
+        } else if (e.target.classList.contains('moreBtn') && e.target.textContent === 'Less Info') {
+            const moreLessBtn = e.target;
+            const hiddenTr = moreLessBtn.parentElement.parentElement.nextElementSibling;
+
+            moreLessBtn.textContent = "More Info";
+            hiddenTr.style.display = 'none';
         }
     });
 }
