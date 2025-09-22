@@ -5,6 +5,7 @@ function solve() {
     const description = document.getElementById('description');
     const add = document.getElementById('add');
     const furnitureList = document.getElementById('furniture-list');
+    const totalPrice = document.getElementsByClassName('total-price')[0];
 
     add.addEventListener('click', (e) => {
         e.preventDefault();
@@ -39,6 +40,13 @@ function solve() {
 
             moreLessBtn.textContent = "More Info";
             hiddenTr.style.display = 'none';
+        } else if (e.target.classList.contains('buyBtn')) {
+            const trInfo = e.target.parentElement.parentElement;
+            const tdPrice = +trInfo.getElementsByTagName('td')[1].textContent;
+
+            totalPrice.textContent = (+totalPrice.textContent + tdPrice).toFixed(2);
+            trInfo.nextElementSibling.remove();
+            trInfo.remove();
         }
     });
 }
