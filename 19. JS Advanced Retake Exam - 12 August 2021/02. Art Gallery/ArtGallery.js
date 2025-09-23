@@ -19,13 +19,9 @@ class ArtGallery {
     inviteGuest(guestName, personality) {
         if (this.guests.some(g => g.guestName === guestName)) throw new Error(`${guestName} has already been invited.`);
 
-        const table = {"Vip": 500, "Middle": 250};
+        const points = personality === "Vip" ? 500 : personality === "Middle" ? 250 : 50;
 
-        this.guests.push({
-            guestName,
-            points: table.hasOwnProperty(personality) ? table[personality] : 50,
-            purchaseArticle: 0
-        });
+        this.guests.push({guestName, points, purchaseArticle: 0});
         return `You have successfully invited ${guestName}!`;
     }
 
