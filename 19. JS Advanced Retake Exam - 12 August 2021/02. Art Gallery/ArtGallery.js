@@ -21,8 +21,28 @@ class ArtGallery {
 
         const table = {"Vip": 500, "Middle": 250};
 
-        this.guests.push({guestName, points: table.hasOwnProperty(personality) ? table[personality] : 50, purchaseArticle: 0});
+        this.guests.push({
+            guestName,
+            points: table.hasOwnProperty(personality) ? table[personality] : 50,
+            purchaseArticle: 0
+        });
         return `You have successfully invited ${guestName}!`;
+    }
+
+    buyArticle(articleModel, articleName, guestName) {
+        let article = this.listOfArticles.find(a => a.articleName === articleName && a.articleModel === articleModel.toLowerCase());
+
+        if (!article) return "This article is not found.";
+        if (article.quantity === 0) return `The ${articleName} is not available.`;
+
+        let guest = this.guests.find(g => g.guestName === guestName);
+
+        if (!guest) return "This guest is not invited.";
+        if (guest.points - this.possibleArticles[articleModel.toLowerCase()] < 0) return "You need to more points to purchase the article.";
+        guest.points -= this.possibleArticles[articleModel.toLowerCase()];
+        guest.purchaseArticle++;
+        article.quantity--;
+        return `${guestName} successfully purchased the article worth ${this.possibleArticles[articleModel.toLowerCase()]} points.`;
     }
 }
 
@@ -37,3 +57,14 @@ class ArtGallery {
 // console.log(artGallery.inviteGuest('John', 'Vip'));
 // console.log(artGallery.inviteGuest('Peter', 'Middle'));
 // console.log(artGallery.inviteGuest('John', 'Middle'));
+
+// Input 3
+// const artGallery = new ArtGallery('Curtis Mayfield');
+// artGallery.addArticle('picture', 'Mona Liza', 3);
+// artGallery.addArticle('Item', 'Ancient vase', 2);
+// artGallery.addArticle('picture', 'Mona Liza', 1);
+// artGallery.inviteGuest('John', 'Vip');
+// artGallery.inviteGuest('Peter', 'Middle');
+// console.log(artGallery.buyArticle('picture', 'Mona Liza', 'John'));
+// console.log(artGallery.buyArticle('item', 'Ancient vase', 'Peter'));
+// console.log(artGallery.buyArticle('item', 'Mona Liza', 'John'));
