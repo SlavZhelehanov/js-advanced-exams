@@ -43,6 +43,22 @@ class ArtGallery {
         guest.purchaseArticle++;
         article.quantity--;
         return `${guestName} successfully purchased the article worth ${this.possibleArticles[articleModel.toLowerCase()]} points.`;
+
+    showGalleryInfo(criteria) {
+        let output = [];
+
+        if (criteria === "article") {
+            output.push("Articles information:");
+            this.listOfArticles.forEach(({
+                                             articleModel,
+                                             articleName,
+                                             quantity
+                                         }) => output.push(`${articleModel} - ${articleName} - ${quantity}`));
+        } else if (criteria === "guest") {
+            output.push("Guests information:");
+            this.guests.forEach(({guestName, purchaseArticle}) => output.push(`${guestName} - ${purchaseArticle}`));
+        }
+        return output.join("\n");
     }
 }
 
@@ -68,3 +84,15 @@ class ArtGallery {
 // console.log(artGallery.buyArticle('picture', 'Mona Liza', 'John'));
 // console.log(artGallery.buyArticle('item', 'Ancient vase', 'Peter'));
 // console.log(artGallery.buyArticle('item', 'Mona Liza', 'John'));
+
+// Input 4
+// const artGallery = new ArtGallery('Curtis Mayfield');
+// artGallery.addArticle('picture', 'Mona Liza', 3);
+// artGallery.addArticle('Item', 'Ancient vase', 2);
+// artGallery.addArticle('picture', 'Mona Liza', 1);
+// artGallery.inviteGuest('John', 'Vip');
+// artGallery.inviteGuest('Peter', 'Middle');
+// artGallery.buyArticle('picture', 'Mona Liza', 'John');
+// artGallery.buyArticle('item', 'Ancient vase', 'Peter');
+// console.log(artGallery.showGalleryInfo('article'));
+// console.log(artGallery.showGalleryInfo('guest'));
