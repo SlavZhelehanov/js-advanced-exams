@@ -31,6 +31,58 @@ describe('library tests', () => {
 
         it("should throw error for invalid projection type", function () {
             expect(() => cinema.ticketPrice("VIP")).to.throw("Invalid projection type.");
+            expect(() => cinema.ticketPrice("")).to.throw("Invalid projection type.");
+            expect(() => cinema.ticketPrice(5)).to.throw("Invalid projection type.");
+            expect(() => cinema.ticketPrice()).to.throw("Invalid projection type.");
+            expect(() => cinema.ticketPrice([])).to.throw("Invalid projection type.");
+        });
+    });
+
+    describe("swapSeatsInHall()", function () {
+        it("should return unsuccessful if is missing input", function () {
+            expect(cinema.swapSeatsInHall(10)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall('',10)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(10, '')).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(null, 10)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(10, null)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall()).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if firstPlace is not integer", function () {
+            expect(cinema.swapSeatsInHall(1.5, 10)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall("a", 10)).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if secondPlace is not integer", function () {
+            expect(cinema.swapSeatsInHall(10, 1.5)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(10, "a")).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if firstPlace is greater than 20", function () {
+            expect(cinema.swapSeatsInHall(21, 5)).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if secondPlace is greater than 20", function () {
+            expect(cinema.swapSeatsInHall(5, 21)).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if firstPlace is less or equal to 0", function () {
+            expect(cinema.swapSeatsInHall(0, 5)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(-5, 5)).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if secondPlace is less or equal to 0", function () {
+            expect(cinema.swapSeatsInHall(5, 0)).to.equal("Unsuccessful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(5, -5)).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return unsuccessful if seats are equal", function () {
+            expect(cinema.swapSeatsInHall(5, 5)).to.equal("Unsuccessful change of seats in the hall.");
+        });
+
+        it("should return successful if seats are valid", function () {
+            expect(cinema.swapSeatsInHall(1, 10)).to.equal("Successful change of seats in the hall.");
+            expect(cinema.swapSeatsInHall(10, 1)).to.equal("Successful change of seats in the hall.");
         });
     });
 });
