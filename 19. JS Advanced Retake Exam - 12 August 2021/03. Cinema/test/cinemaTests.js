@@ -15,4 +15,22 @@ describe('library tests', () => {
             expect(cinema.showMovies(['Avatar'])).to.equal("Avatar");
         });
     });
+
+    describe("ticketPrice()", function () {
+        it("should return correct price for Premiere", function () {
+            expect(cinema.ticketPrice("Premiere")).to.equal(12.00);
+        });
+
+        it("should return correct price for Normal", function () {
+            expect(cinema.ticketPrice("Normal")).to.equal(7.50);
+        });
+
+        it("should return correct price for Discount", function () {
+            expect(cinema.ticketPrice("Discount")).to.equal(5.50);
+        });
+
+        it("should throw error for invalid projection type", function () {
+            expect(() => cinema.ticketPrice("VIP")).to.throw("Invalid projection type.");
+        });
+    });
 });
