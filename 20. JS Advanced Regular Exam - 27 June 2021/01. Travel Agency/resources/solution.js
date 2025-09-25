@@ -26,4 +26,6 @@ function solution() {
         [submitBTN.disabled, editBTN.disabled, continueBTN.disabled] = [false, true, true];
         infoPreview.innerHTML = '';
     });
+
+    continueBTN.addEventListener('click', () => {document.getElementById('block').innerHTML = '<h3>Thank you for your reservation!</h3>';});
 }
