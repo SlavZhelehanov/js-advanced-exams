@@ -1,16 +1,15 @@
 window.addEventListener('load', solution);
 
 function solution() {
-    const [fname, email, phone, address, code, submitBTN] = document.getElementById('form').getElementsByTagName('input');
+    const [fname, email, phone, address, code, submitBTN, editBTN, continueBTN] = document.getElementsByTagName('input');
     const infoPreview = document.getElementById('infoPreview');
-    const [editBTN, continueBTN] = document.getElementsByClassName('actions')[0].getElementsByTagName('input');
 
     let data = [];
 
     submitBTN.addEventListener('click', (e) => {
         e.preventDefault();
 
-        if (fname.value !== '' && email.value !== '') { // && phone.value !== '' && address.value !== '' && code.value !== '') {
+        if (fname.value !== '' && email.value !== '') {
             infoPreview.innerHTML = `<li>Full Name: ${fname.value}</li>
 <li>Email: ${email.value}</li>
 <li>Phone Number: ${phone.value}</li>
