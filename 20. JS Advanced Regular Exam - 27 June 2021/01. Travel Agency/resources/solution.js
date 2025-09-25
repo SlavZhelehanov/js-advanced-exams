@@ -5,6 +5,8 @@ function solution() {
     const infoPreview = document.getElementById('infoPreview');
     const [editBTN, continueBTN] = document.getElementsByClassName('actions')[0].getElementsByTagName('input');
 
+    let data = [];
+
     submitBTN.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -14,7 +16,14 @@ function solution() {
 <li>Phone Number: ${phone.value}</li>
 <li>Address: ${address.value}</li>
 <li>Postal Code: ${code.value}</li>`;
+            data = [fname.value, email.value, phone.value, address.value, code.value];
             [fname.value, email.value, phone.value, address.value, code.value, submitBTN.disabled, editBTN.disabled, continueBTN.disabled] = ['', '', '', '', '', true, false, false];
         }
+    });
+
+    editBTN.addEventListener('click', (e) => {
+        [fname.value, email.value, phone.value, address.value, code.value] = data;
+        [submitBTN.disabled, editBTN.disabled, continueBTN.disabled] = [false, true, true];
+        infoPreview.innerHTML = '';
     });
 }
