@@ -47,6 +47,17 @@ class Restaurant {
         }
         return `Great idea! Now with the ${meal} we have ${mealCount} meals in the menu, other ideas?`;
     }
+
+    showTheMenu() {
+        let meals = Object.entries(this.menu);
+        if (meals.length === 0) {
+            return "Our menu is not ready yet, please come later...";
+        }
+
+        return meals
+            .map(([meal, info]) => `${meal} - $ ${info.price}`)
+            .join('\n');
+    }
 }
 
 // Input 1
@@ -57,3 +68,7 @@ class Restaurant {
 // let kitchen = new Restaurant(1000);
 // console.log(kitchen.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99));
 // console.log(kitchen.addToMenu('Pizza', ['Flour 0.5', 'Oil 0.2', 'Yeast 0.5', 'Salt 0.1', 'Sugar 0.1', 'Tomato sauce 0.5', 'Pepperoni 1', 'Cheese 1.5'], 15.55));
+
+// Input 3
+// let kitchen = new Restaurant(1000);
+// console.log(kitchen.showTheMenu());
