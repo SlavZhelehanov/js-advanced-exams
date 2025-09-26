@@ -58,6 +58,28 @@ class Restaurant {
             .map(([meal, info]) => `${meal} - $ ${info.price}`)
             .join('\n');
     }
+
+    makeTheOrder(meal) {
+        if (!this.menu.hasOwnProperty(meal)) {
+            return `There is not ${meal} yet in our menu, do you want to order something else?`;
+        }
+
+        let neededProducts = this.menu[meal].products;
+
+        for (let p of neededProducts) {
+            if (!this.stockProducts.hasOwnProperty(p.productName) || this.stockProducts[p.productName] < p.productQuantity) {
+                return `For the time being, we cannot complete your order (${meal}), we are very sorry...`;
+            }
+        }
+
+        for (let p of neededProducts) {
+            this.stockProducts[p.productName] -= p.productQuantity;
+        }
+
+        this.budgetMoney += this.menu[meal].price;
+
+        return `Your order (${meal}) will be completed in the next 30 minutes and will cost you ${this.menu[meal].price}.`;
+    }
 }
 
 // Input 1
@@ -72,3 +94,9 @@ class Restaurant {
 // Input 3
 // let kitchen = new Restaurant(1000);
 // console.log(kitchen.showTheMenu());
+
+// Input 4
+// let kitchen = new Restaurant(1000);
+// kitchen.loadProducts(['Yogurt 30 3', 'Honey 50 4', 'Strawberries 20 10', 'Banana 5 1']);
+// kitchen.addToMenu('frozenYogurt', ['Yogurt 1', 'Honey 1', 'Banana 1', 'Strawberries 10'], 9.99);
+// console.log(kitchen.makeTheOrder('frozenYogurt'));
