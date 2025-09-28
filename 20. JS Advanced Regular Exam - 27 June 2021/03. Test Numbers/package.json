@@ -1,0 +1,17 @@
+{
+  "name": "03.test-numbers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "testNumbers.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "chai": "^5.3.1",
+    "mocha": "^11.7.1"
+  }
+}
