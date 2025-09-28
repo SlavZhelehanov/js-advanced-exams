@@ -38,4 +38,18 @@ describe("Tests for testNumbers", () => {
             expect(testNumbers.numberChecker('4')).to.equal('The number is even!');
         });
     });
+
+    describe("averageSumArray", function() {
+        it("should return correct average for array of numbers", function() {
+            expect(testNumbers.averageSumArray([1, 2, 3])).to.equal(2);
+        });
+
+        it("should return correct average for decimals", function() {
+            expect(testNumbers.averageSumArray([1.5, 2.5, 3.5])).to.equal(2.5);
+        });
+
+        it("should handle single-element array", function() {
+            expect(testNumbers.averageSumArray([5])).to.equal(5);
+        });
+    });
 });
