@@ -20,4 +20,22 @@ describe("Tests for testNumbers", () => {
             expect(testNumbers.sumNumbers(-1, -2)).to.equal('-3.00');
         });
     });
+
+    describe("numberChecker", function() {
+        it("should throw error if input is not a number", function() {
+            expect(() => testNumbers.numberChecker('abc')).to.throw('The input is not a number!');
+        });
+
+        it("should return even message for even number", function() {
+            expect(testNumbers.numberChecker(2)).to.equal('The number is even!');
+        });
+
+        it("should return odd message for odd number", function() {
+            expect(testNumbers.numberChecker(3)).to.equal('The number is odd!');
+        });
+
+        it("should parse string number input", function() {
+            expect(testNumbers.numberChecker('4')).to.equal('The number is even!');
+        });
+    });
 });
