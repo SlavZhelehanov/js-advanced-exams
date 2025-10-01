@@ -33,6 +33,6 @@ function solve() {
             archiveSection.innerHTML = '';
             titles.sort((a, b) => a.localeCompare(b)).forEach(t => {archiveSection.innerHTML += `<li>${t}</li>`;});
             article.remove();
-        }
+        } else if (e.target.classList.contains('delete')) e.target.parentNode.parentNode.remove();
     });
 }
