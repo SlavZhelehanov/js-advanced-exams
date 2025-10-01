@@ -42,6 +42,23 @@ class Story {
         comment.Replies.push({ Id: rID, Username: username, Content: content });
         return "You replied successfully";
     }
+
+    toString(sortingType) {
+        let output = [`Title: ${this.title}`, `Creator: ${this.creator}`, `Likes: ${this.#likes.length}`, "Comments:"];
+
+        if (this.#comments.length === 0) return output.join("\n");
+        else if (sortingType === 'asc') this.#comments.sort((a, b) => a.Id - b.Id).forEach(({ Replies }) => Replies.sort((a, b) => a.Id - b.Id));
+        else if (sortingType === 'desc') this.#comments.sort((a, b) => b.Id - a.Id).forEach(({ Replies }) => Replies.sort((a, b) => b.Id - a.Id));
+        else if (sortingType === 'username') this.#comments.sort((a, b) => a.Username.localeCompare(b.Username)).forEach(({ Replies }) => Replies.sort((a, b) => a.Username.localeCompare(b.Username)));
+
+        this.#comments.forEach(({ Id, Username, Content, Replies }) => {
+            let comment = [`-- ${Id}. ${Username}: ${Content}`];
+
+            Replies.forEach(r => comment.push(`--- ${r.Id}. ${r.Username}: ${r.Content}`));
+            Replies.length === 0 ? output.push(comment[0]) : output.push(comment.join("\n"));
+        });
+        return output.join("\n");
+    }
 }
 
 let art = new Story("My Story", "Anny");
@@ -54,3 +71,8 @@ console.log(art.comment("Ammy", "New Content"));
 art.comment("Zane", "Reply", 1);
 art.comment("Jessy", "Nice :)");
 console.log(art.comment("SAmmy", "Reply@", 1));
+console.log()
+console.log(art.toString('username'));
+console.log()
+art.like("Zane");
+console.log(art.toString('desc'));
