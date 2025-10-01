@@ -21,8 +21,16 @@ class Story {
 
         return `${username} liked ${this.title}!`;
     }
+
+    dislike(username) {
+        if (!this.#likes.includes(username)) throw new Error("You can't dislike this story!");
+        this.#likes = this.#likes.filter(user => user !== username);
+        return `${username} disliked ${this.title}`;
+    }
 }
 
 let art = new Story("My Story", "Anny");
 art.like("John");
+console.log(art.likes);
+art.dislike("John");
 console.log(art.likes);
