@@ -33,4 +33,22 @@ describe('Tests for numberOperations', function() {
             expect(numberOperations.numberChecker(150)).to.equal('The number is greater or equal to 100!');
         });
     });
+
+    describe('sumArrays', function() {
+        it('should sum arrays of equal length', function() {
+            expect(numberOperations.sumArrays([1, 2, 3], [4, 5, 6])).to.deep.equal([5, 7, 9]);
+        });
+
+        it('should handle when first array is longer', function() {
+            expect(numberOperations.sumArrays([1, 2, 3, 4], [5, 6])).to.deep.equal([6, 8, 3, 4]);
+        });
+
+        it('should handle when second array is longer', function() {
+            expect(numberOperations.sumArrays([1, 2], [3, 4, 5, 6])).to.deep.equal([4, 6, 5, 6]);
+        });
+
+        it('should return empty array when both arrays are empty', function() {
+            expect(numberOperations.sumArrays([], [])).to.deep.equal([]);
+        });
+    });
 });

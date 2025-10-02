@@ -20,4 +20,4 @@
 - [x] 18. JS Advanced Regular Exam - 23 October 2021
 - [ ] 19. JS Advanced Retake Exam - 12 August 2021
 - [x] 20. JS Advanced Regular Exam - 27 June 2021
-- [ ] 21. JS Advanced Regular Exam - 20 February 2021
+- [x] 21. JS Advanced Regular Exam - 20 February 2021
