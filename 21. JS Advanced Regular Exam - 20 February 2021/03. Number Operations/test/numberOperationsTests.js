@@ -16,4 +16,21 @@ describe('Tests for numberOperations', function() {
             expect(numberOperations.powNumber(0)).to.equal(0);
         });
     });
+
+    describe('numberChecker', function() {
+        it('should throw error when input is not a number', function() {
+            expect(() => numberOperations.numberChecker('abc')).to.throw('The input is not a number!');
+            expect(() => numberOperations.numberChecker(undefined)).to.throw('The input is not a number!');
+        });
+
+        it('should return message when number is lower than 100', function() {
+            expect(numberOperations.numberChecker(50)).to.equal('The number is lower than 100!');
+            expect(numberOperations.numberChecker('99')).to.equal('The number is lower than 100!');
+        });
+
+        it('should return message when number is greater or equal to 100', function() {
+            expect(numberOperations.numberChecker(100)).to.equal('The number is greater or equal to 100!');
+            expect(numberOperations.numberChecker(150)).to.equal('The number is greater or equal to 100!');
+        });
+    });
 });
