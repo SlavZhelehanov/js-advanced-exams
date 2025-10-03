@@ -3,6 +3,7 @@ function solution() {
     const giftName = addGifts.getElementsByTagName('input')[0];
     const addBtn = addGifts.getElementsByTagName('button')[0];
     const listOfGiftsUl = listOfGigts.getElementsByTagName('ul')[0];
+    const sentGiftsUl = sentGifts.getElementsByTagName('ul')[0];
 
     let allGifts = [];
 
@@ -18,5 +19,16 @@ function solution() {
 <button id="discardButton">Discard</button>
 </li>`;
         });
+    });
+
+    listOfGiftsUl.addEventListener('click', (e) => {
+        if (e.target.id === 'sendButton') {
+            const li = e.target.parentElement;
+            const [sendbutton, discardbutton] = li.getElementsByTagName('button');
+
+            sendbutton.remove();
+            discardbutton.remove();
+            sentGiftsUl.appendChild(li);
+        }
     });
 }
