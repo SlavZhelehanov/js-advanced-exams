@@ -4,6 +4,7 @@ function solution() {
     const addBtn = addGifts.getElementsByTagName('button')[0];
     const listOfGiftsUl = listOfGigts.getElementsByTagName('ul')[0];
     const sentGiftsUl = sentGifts.getElementsByTagName('ul')[0];
+    const discardGiftsUl = discardedGifts.getElementsByTagName('ul')[0];
 
     let allGifts = [];
 
@@ -28,7 +29,16 @@ function solution() {
 
             sendbutton.remove();
             discardbutton.remove();
+            allGifts = allGifts.filter(g => g !== li.textContent.trim());
             sentGiftsUl.appendChild(li);
+        } else if (e.target.id === 'discardButton') {
+            const li = e.target.parentElement;
+            const [sendbutton, discardbutton] = li.getElementsByTagName('button');
+
+            sendbutton.remove();
+            discardbutton.remove();
+            allGifts = allGifts.filter(g => g !== li.textContent.trim());
+            discardGiftsUl.appendChild(li);
         }
     });
 }
