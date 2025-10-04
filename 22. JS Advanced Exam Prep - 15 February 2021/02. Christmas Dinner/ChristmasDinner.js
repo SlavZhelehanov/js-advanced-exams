@@ -28,6 +28,17 @@ class ChristmasDinner {
         this.guests[name] = dish;
         return `You have successfully invited ${name}!`;
     }
+
+    showAttendance(){
+        let allTheGuest = [];
+
+        for (const name in this.guests) {
+            const dish = this.guests[name], products = this.dishes.find(d => d.recipeName === dish);
+
+            allTheGuest.push(`${name} will eat ${dish}, which consists of ${products.productsList.join(", ")}`);
+        }
+        return allTheGuest.join("\n");
+    }
 }
 
 let dinner = new ChristmasDinner(300);
@@ -57,3 +68,5 @@ dinner.recipes({
 dinner.inviteGuests('Ivan', 'Oshav');
 dinner.inviteGuests('Petar', 'Folded cabbage leaves filled with rice');
 dinner.inviteGuests('Georgi', 'Peppers filled with beans');
+
+console.log(dinner.showAttendance());
