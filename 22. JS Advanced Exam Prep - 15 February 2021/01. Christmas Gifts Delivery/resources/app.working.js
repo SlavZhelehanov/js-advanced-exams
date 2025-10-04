@@ -62,3 +62,4 @@ function solution() {
         discardedGifts.appendChild(discardedItem);
     }
 }
+0
