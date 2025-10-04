@@ -1,6 +1,8 @@
 class ChristmasDinner {
     constructor(budget) {
-        if (budget < 0) {throw new Error("The budget cannot be a negative number")}
+        if (budget < 0) {
+            throw new Error("The budget cannot be a negative number")
+        }
         this.budget = budget;
         this.dishes = [];
         this.products = [];
@@ -14,12 +16,18 @@ class ChristmasDinner {
         return `You have successfully bought ${product}!`;
     }
 
-    recipes({recipeName, productsList}){
+    recipes({recipeName, productsList}) {
         for (let i = 0; i < productsList.length; i++) if (!this.products.some(product => product === productsList[i])) throw new Error("We do not have this product");
         this.dishes.push({recipeName, productsList});
         return `${recipeName} has been successfully cooked!`;
     };
 
+    inviteGuests(name, dish) {
+        if (!this.dishes.some(recipe => recipe.recipeName === dish)) throw new Error("We do not have this dish");
+        if (this.guests.hasOwnProperty(name)) throw new Error("This guest has already been invited");
+        this.guests[name] = dish;
+        return `You have successfully invited ${name}!`;
+    }
 }
 
 let dinner = new ChristmasDinner(300);
@@ -45,3 +53,7 @@ dinner.recipes({
     recipeName: 'Peppers filled with beans',
     productsList: ['Beans', 'Peppers', 'Salt']
 });
+
+dinner.inviteGuests('Ivan', 'Oshav');
+dinner.inviteGuests('Petar', 'Folded cabbage leaves filled with rice');
+dinner.inviteGuests('Georgi', 'Peppers filled with beans');
