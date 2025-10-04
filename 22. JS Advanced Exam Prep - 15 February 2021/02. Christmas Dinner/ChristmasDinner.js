@@ -13,6 +13,13 @@ class ChristmasDinner {
         this.products.push(product);
         return `You have successfully bought ${product}!`;
     }
+
+    recipes({recipeName, productsList}){
+        for (let i = 0; i < productsList.length; i++) if (!this.products.some(product => product === productsList[i])) throw new Error("We do not have this product");
+        this.dishes.push({recipeName, productsList});
+        return `${recipeName} has been successfully cooked!`;
+    };
+
 }
 
 let dinner = new ChristmasDinner(300);
@@ -25,3 +32,16 @@ dinner.shopping(['Savory', 1]);
 dinner.shopping(['Peppers', 1]);
 dinner.shopping(['Fruits', 40]);
 dinner.shopping(['Honey', 10]);
+
+dinner.recipes({
+    recipeName: 'Oshav',
+    productsList: ['Fruits', 'Honey']
+});
+dinner.recipes({
+    recipeName: 'Folded cabbage leaves filled with rice',
+    productsList: ['Cabbage', 'Rice', 'Salt', 'Savory']
+});
+dinner.recipes({
+    recipeName: 'Peppers filled with beans',
+    productsList: ['Beans', 'Peppers', 'Salt']
+});
