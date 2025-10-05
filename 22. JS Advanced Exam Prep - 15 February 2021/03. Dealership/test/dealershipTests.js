@@ -25,4 +25,17 @@ describe("Tests for dealership", function() {
             expect(dealership.carEquipment(['heated seats', 'sliding roof', 'sport rims', 'navigation'], [1, 2])).to.deep.equal(['sliding roof', 'sport rims']);
         });
     });
+
+    describe("euroCategory()", function() {
+        it("should return message for no discount", function() {
+            expect(dealership.euroCategory(0)).to.equal("Your euro category is low, so there is no discount from the final price!");
+            expect(dealership.euroCategory(1)).to.equal("Your euro category is low, so there is no discount from the final price!");
+            expect(dealership.euroCategory(2)).to.equal("Your euro category is low, so there is no discount from the final price!");
+            expect(dealership.euroCategory(3)).to.equal("Your euro category is low, so there is no discount from the final price!");
+        });
+        it("should return message for car's price discount", function() {
+            expect(dealership.euroCategory(4)).to.equal(`We have added 5% discount to the final price: 14250.`);
+            expect(dealership.euroCategory(5)).to.equal(`We have added 5% discount to the final price: 14250.`);
+        });
+    });
 });
