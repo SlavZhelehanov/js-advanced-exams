@@ -33,6 +33,12 @@ function solve() {
             green.className = "red";
             green.textContent = "Delete";
             inProgress.appendChild(article);
+        } else if (e.target.classList.contains("red")) e.target.parentElement.parentElement.remove();
+    });
+
+    inProgress.addEventListener("click", function(e) {
+        if (e.target.classList.contains("red")) {
+            e.target.parentElement.parentElement.remove();
         }
     });
 }
