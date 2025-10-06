@@ -95,6 +95,10 @@ button {
     font-size: 0.75rem;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 form button {
     display: block;
     margin-left: auto;
