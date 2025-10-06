@@ -5,6 +5,7 @@ function solve() {
     const addBtn = document.getElementById("add");
     const [_, orange, yellow, green] = document.getElementsByTagName("section");
     const open = orange.getElementsByTagName("div")[1];
+    const inProgress = yellow.getElementsByTagName("div")[1];
 
     addBtn.addEventListener("click", function(e) {
         e.preventDefault();
@@ -19,6 +20,19 @@ function solve() {
 <button class="red">Delete</button>
 </div>
 </article>`;
+        }
+    });
+
+    open.addEventListener("click", function(e) {
+        if (e.target.classList.contains("green")) {
+            const article = e.target.parentElement.parentElement;
+            const [green, red] = article.getElementsByTagName("button");
+
+            red.className = "orange";
+            red.textContent = "Finish";
+            green.className = "red";
+            green.textContent = "Delete";
+            inProgress.appendChild(article);
         }
     });
 }
