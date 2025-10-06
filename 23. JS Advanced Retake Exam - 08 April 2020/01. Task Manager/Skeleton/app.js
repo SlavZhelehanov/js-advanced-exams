@@ -6,6 +6,7 @@ function solve() {
     const [_, orange, yellow, green] = document.getElementsByTagName("section");
     const open = orange.getElementsByTagName("div")[1];
     const inProgress = yellow.getElementsByTagName("div")[1];
+    const complete = green.getElementsByTagName("div")[1];
 
     addBtn.addEventListener("click", function(e) {
         e.preventDefault();
@@ -39,6 +40,11 @@ function solve() {
     inProgress.addEventListener("click", function(e) {
         if (e.target.classList.contains("red")) {
             e.target.parentElement.parentElement.remove();
+        } else if (e.target.classList.contains("orange")) {
+            const article = e.target.parentElement.parentElement;
+
+            article.getElementsByTagName("div")[0].remove();
+            complete.appendChild(article);
         }
     });
 }
