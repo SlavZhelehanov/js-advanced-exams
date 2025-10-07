@@ -30,4 +30,23 @@ describe("Repository Tests", function () {
             expect(repository.count).to.equal(2);
         });
     });
+
+    describe("add()", () => {
+        it("should add a valid entity and return its id", () => {
+            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let id = repository.add(entity);
+            expect(id).to.equal(0);
+            expect(repository.getId(0)).to.deep.equal(entity);
+        });
+
+        it("should throw error if property is missing", () => {
+            let entity = { age: 22, birthday: new Date(1998, 0, 7) };
+            expect(() => repository.add(entity)).to.throw(Error, "Property name is missing from the entity!");
+        });
+
+        it("should throw type error if property type is wrong", () => {
+            let entity = { name: "Pesho", age: "22", birthday: new Date(1998, 0, 7) };
+            expect(() => repository.add(entity)).to.throw(TypeError, "Property age is not of correct type!");
+        });
+    });
 });
