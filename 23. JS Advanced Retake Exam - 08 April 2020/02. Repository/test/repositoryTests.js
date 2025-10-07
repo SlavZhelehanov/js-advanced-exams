@@ -1,4 +1,5 @@
-let { Repository } = require("../repository.js");
+const {expect} = require("chai");
+const {Repository} = require("../repository.js");
 
 describe("Repository Tests", function () {
     let properties;
@@ -23,7 +24,7 @@ describe("Repository Tests", function () {
 
     describe("count getter", () => {
         it("should return correct number of entities", () => {
-            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
             repository.add(entity);
             expect(repository.count).to.equal(1);
             repository.add(entity);
@@ -33,26 +34,34 @@ describe("Repository Tests", function () {
 
     describe("add()", () => {
         it("should add a valid entity and return its id", () => {
-            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
             let id = repository.add(entity);
             expect(id).to.equal(0);
             expect(repository.getId(0)).to.deep.equal(entity);
         });
 
         it("should throw error if property is missing", () => {
-            let entity = { age: 22, birthday: new Date(1998, 0, 7) };
-            expect(() => repository.add(entity)).to.throw(Error, "Property name is missing from the entity!");
+            let entity1 = {age: 22, birthday: new Date(1998, 0, 7)};
+            let entity2 = {name: "Pesho", birthday: new Date(1998, 0, 7)};
+            let entity3 = {name: "Pesho", age: 22};
+            expect(() => repository.add(entity1)).to.throw(Error, "Property name is missing from the entity!");
+            expect(() => repository.add(entity2)).to.throw(Error, "Property age is missing from the entity!");
+            expect(() => repository.add(entity3)).to.throw(Error, "Property birthday is missing from the entity!");
         });
 
         it("should throw type error if property type is wrong", () => {
-            let entity = { name: "Pesho", age: "22", birthday: new Date(1998, 0, 7) };
-            expect(() => repository.add(entity)).to.throw(TypeError, "Property age is not of correct type!");
+            let entity1 = {name: "Pesho", age: "22", birthday: new Date(1998, 0, 7)};
+            let entity2 = {name: "Pesho", age: 22, birthday: "1998, 0, 7"};
+            let entity3 = {name: 5, age: 22, birthday: new Date(1998, 0, 7)};
+            expect(() => repository.add(entity1)).to.throw(TypeError, "Property age is not of correct type!");
+            expect(() => repository.add(entity2)).to.throw(TypeError, "Property birthday is not of correct type!");
+            expect(() => repository.add(entity3)).to.throw(TypeError, "Property name is not of correct type!");
         });
     });
 
     describe("getId()", () => {
         it("should return entity by id", () => {
-            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
             let id = repository.add(entity);
             expect(repository.getId(id)).to.deep.equal(entity);
         });
@@ -64,26 +73,42 @@ describe("Repository Tests", function () {
 
     describe("update()", () => {
         it("should update entity with valid new entity", () => {
-            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
             repository.add(entity);
 
-            let newEntity = { name: "Gosho", age: 33, birthday: new Date(1990, 0, 1) };
+            let newEntity = {name: "Gosho", age: 33, birthday: new Date(1990, 0, 1)};
             repository.update(0, newEntity);
 
             expect(repository.getId(0)).to.deep.equal(newEntity);
         });
 
         it("should throw if id does not exist", () => {
-            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
             expect(() => repository.update(99, entity)).to.throw(Error, "Entity with id: 99 does not exist!");
         });
 
         it("should throw error if new entity is invalid", () => {
-            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
             repository.add(entity);
 
-            let invalidEntity = { name: "Gosho", birthday: new Date(1990, 0, 1) };
-            expect(() => repository.update(0, invalidEntity)).to.throw(Error, "Property age is missing from the entity!");
+            let invalidEntity1 = {name: "Gosho", age: 22, birthday: new Date(1990, 0, 1)};
+            let invalidEntity2 = { name: "Gosho", birthday: new Date(1990, 0, 1) };
+            expect(() => repository.update(0, invalidEntity2)).to.throw(Error, "Property age is missing from the entity!");
+            expect(() => repository.update(99, invalidEntity1)).to.throw(Error, "Entity with id: 99 does not exist!");
+        });
+    });
+
+    describe("del()", () => {
+        it("should delete entity by id", () => {
+            let entity = {name: "Pesho", age: 22, birthday: new Date(1998, 0, 7)};
+            repository.add(entity);
+            repository.del(0);
+            expect(repository.count).to.equal(0);
+            expect(() => repository.getId(0)).to.throw(Error, "Entity with id: 0 does not exist!");
+        });
+
+        it("should throw if id does not exist", () => {
+            expect(() => repository.del(99)).to.throw(Error, "Entity with id: 99 does not exist!");
         });
     });
 });
