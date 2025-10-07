@@ -61,4 +61,29 @@ describe("Repository Tests", function () {
             expect(() => repository.getId(99)).to.throw(Error, "Entity with id: 99 does not exist!");
         });
     });
+
+    describe("update()", () => {
+        it("should update entity with valid new entity", () => {
+            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            repository.add(entity);
+
+            let newEntity = { name: "Gosho", age: 33, birthday: new Date(1990, 0, 1) };
+            repository.update(0, newEntity);
+
+            expect(repository.getId(0)).to.deep.equal(newEntity);
+        });
+
+        it("should throw if id does not exist", () => {
+            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            expect(() => repository.update(99, entity)).to.throw(Error, "Entity with id: 99 does not exist!");
+        });
+
+        it("should throw error if new entity is invalid", () => {
+            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            repository.add(entity);
+
+            let invalidEntity = { name: "Gosho", birthday: new Date(1990, 0, 1) };
+            expect(() => repository.update(0, invalidEntity)).to.throw(Error, "Property age is missing from the entity!");
+        });
+    });
 });
