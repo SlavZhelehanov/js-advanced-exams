@@ -20,4 +20,14 @@ describe("Repository Tests", function () {
             expect(repository.count).to.equal(0);
         });
     });
+
+    describe("count getter", () => {
+        it("should return correct number of entities", () => {
+            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            repository.add(entity);
+            expect(repository.count).to.equal(1);
+            repository.add(entity);
+            expect(repository.count).to.equal(2);
+        });
+    });
 });
