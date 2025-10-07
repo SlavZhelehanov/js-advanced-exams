@@ -49,4 +49,16 @@ describe("Repository Tests", function () {
             expect(() => repository.add(entity)).to.throw(TypeError, "Property age is not of correct type!");
         });
     });
+
+    describe("getId()", () => {
+        it("should return entity by id", () => {
+            let entity = { name: "Pesho", age: 22, birthday: new Date(1998, 0, 7) };
+            let id = repository.add(entity);
+            expect(repository.getId(id)).to.deep.equal(entity);
+        });
+
+        it("should throw if id does not exist", () => {
+            expect(() => repository.getId(99)).to.throw(Error, "Entity with id: 99 does not exist!");
+        });
+    });
 });
