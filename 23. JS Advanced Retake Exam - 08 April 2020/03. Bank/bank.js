@@ -35,6 +35,17 @@ class Bank {
         customer["transactions"].push(`${customer.firstName} ${customer.lastName} withdrew ${amount}$!`);
         return `${customer.totalMoney}$`;
     }
+
+    customerInfo(personalId) {
+        let customer = this.allCustomers.find(customer => customer.personalId === personalId);
+
+        if (!customer) throw new Error("We have no customer with this ID!");
+
+        let output = [`Bank name: ${this.#bankName}`, `Customer name: ${customer.firstName} ${customer.lastName}`, `Customer ID: ${customer.personalId}`, `Total Money: ${customer.totalMoney}$`, "Transactions:"];
+
+        for (let i = customer.transactions.length - 1; 0 <= i; i--) output.push(`${i + 1}. ${customer.transactions[i]}`);
+        return output.join("\n");
+    }
 }
 
 let bank = new Bank("SoftUni Bank");
@@ -48,3 +59,4 @@ bank.depositMoney(4151596, 555);
 
 console.log(bank.withdrawMoney(6233267, 125));
 
+console.log(bank.customerInfo(6233267));
