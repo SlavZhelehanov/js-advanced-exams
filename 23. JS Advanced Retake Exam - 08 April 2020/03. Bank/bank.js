@@ -16,8 +16,13 @@ class Bank {
         let customer = this.allCustomers.find(customer => customer.personalId === personalId);
 
         if (!customer) throw new Error("We have no customer with this ID!");
-        if (!customer.hasOwnProperty("totalMoney")) customer["totalMoney"] = amount;
-        else customer["totalMoney"] += amount;
+        if (!customer.hasOwnProperty("totalMoney")) {
+            customer["totalMoney"] = amount;
+            customer["transactions"] = [`${customer.firstName} ${customer.lastName} made deposit of ${amount}$!`];
+        } else {
+            customer["totalMoney"] += amount;
+            customer["transactions"].push(`${customer.firstName} ${customer.lastName} made deposit of ${amount}$!`);
+        }
         return `${customer.totalMoney}$`;
     }
 
@@ -27,6 +32,7 @@ class Bank {
         if (!customer) throw new Error("We have no customer with this ID!");
         if (customer.totalMoney < amount) throw new Error(`${customer.firstName} ${customer.lastName} does not have enough money to withdraw that amount!`);
         customer["totalMoney"] -= amount;
+        customer["transactions"].push(`${customer.firstName} ${customer.lastName} withdrew ${amount}$!`);
         return `${customer.totalMoney}$`;
     }
 }
