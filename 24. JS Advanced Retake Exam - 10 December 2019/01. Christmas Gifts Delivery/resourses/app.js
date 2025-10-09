@@ -24,6 +24,7 @@ function solution() {
         const discardBtn = document.createElement('button');
         discardBtn.textContent = 'Discard';
         discardBtn.id = 'discardButton';
+        discardBtn.addEventListener('click', () => discardGift(giftName, li));
 
         li.appendChild(sendBtn);
         li.appendChild(discardBtn);
@@ -43,5 +44,12 @@ function solution() {
         const sentItem = document.createElement('li');
         sentItem.textContent = name;
         sentGifts.appendChild(sentItem);
+    }
+
+    function discardGift(name, li) {
+        li.remove(); // remove from current list
+        const discardedItem = document.createElement('li');
+        discardedItem.textContent = name;
+        discardedGifts.appendChild(discardedItem);
     }
 }
