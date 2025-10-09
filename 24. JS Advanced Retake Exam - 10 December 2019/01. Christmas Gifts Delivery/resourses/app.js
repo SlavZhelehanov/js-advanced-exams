@@ -27,6 +27,13 @@ function solution() {
         li.appendChild(sendBtn);
         li.appendChild(discardBtn);
         listOfGifts.appendChild(li);
+        sortGifts();
         input.value = '';
+    }
+
+    function sortGifts() {
+        const items = Array.from(listOfGifts.children);
+        const sorted = items.sort((a, b) => a.textContent.localeCompare(b.textContent));
+        sorted.forEach(item => listOfGifts.appendChild(item));
     }
 }
