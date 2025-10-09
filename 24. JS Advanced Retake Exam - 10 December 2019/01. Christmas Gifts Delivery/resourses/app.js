@@ -19,6 +19,7 @@ function solution() {
         const sendBtn = document.createElement('button');
         sendBtn.textContent = 'Send';
         sendBtn.id = 'sendButton';
+        sendBtn.addEventListener('click', () => sendGift(giftName, li));
 
         const discardBtn = document.createElement('button');
         discardBtn.textContent = 'Discard';
@@ -35,5 +36,12 @@ function solution() {
         const items = Array.from(listOfGifts.children);
         const sorted = items.sort((a, b) => a.textContent.localeCompare(b.textContent));
         sorted.forEach(item => listOfGifts.appendChild(item));
+    }
+
+    function sendGift(name, li) {
+        li.remove(); // remove from current list
+        const sentItem = document.createElement('li');
+        sentItem.textContent = name;
+        sentGifts.appendChild(sentItem);
     }
 }
