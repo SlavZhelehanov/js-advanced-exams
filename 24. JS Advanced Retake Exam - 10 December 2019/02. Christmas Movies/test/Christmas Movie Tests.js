@@ -87,4 +87,17 @@ describe("ChristmasMovies Class Tests", function () {
             expect(result).to.equal('Your favourite movie is Home Alone and you have watched it 2 times!');
         });
     });
+
+    describe("mostStarredActor()", () => {
+        it("should throw if no movies in collection", () => {
+            expect(() => christmas.mostStarredActor()).to.throw('You have not watched a movie yet this year!');
+        });
+
+        it("should return actor with most appearances", () => {
+            christmas.buyMovie('Home Alone', ['Macaulay Culkin', 'Joe Pesci']);
+            christmas.buyMovie('Home Alone 2', ['Macaulay Culkin']);
+            let result = christmas.mostStarredActor();
+            expect(result).to.equal('The most starred actor is Macaulay Culkin and starred in 2 movies!');
+        });
+    });
 });
