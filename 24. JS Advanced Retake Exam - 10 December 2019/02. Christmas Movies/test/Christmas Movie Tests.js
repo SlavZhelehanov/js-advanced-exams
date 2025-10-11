@@ -32,4 +32,23 @@ describe("ChristmasMovies Class Tests", function () {
                 .to.throw('You already own Home Alone in your collection!');
         });
     });
+
+    describe("watchMovie()", () => {
+        it("should throw if movie is not in collection", () => {
+            expect(() => christmas.watchMovie('Nonexistent')).to.throw('No such movie in your collection!');
+        });
+
+        it("should add movie to watched list if first time watching", () => {
+            christmas.buyMovie('Home Alone', ['Macaulay Culkin']);
+            christmas.watchMovie('Home Alone');
+            expect(christmas.watched).to.have.property('Home Alone', 1);
+        });
+
+        it("should increment watch count if already watched", () => {
+            christmas.buyMovie('Home Alone', ['Macaulay Culkin']);
+            christmas.watchMovie('Home Alone');
+            christmas.watchMovie('Home Alone');
+            expect(christmas.watched['Home Alone']).to.equal(2);
+        });
+    });
 });
