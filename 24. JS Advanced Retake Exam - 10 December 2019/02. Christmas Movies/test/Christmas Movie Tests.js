@@ -71,4 +71,20 @@ describe("ChristmasMovies Class Tests", function () {
             expect(christmas.watched).to.not.have.property('Home Alone');
         });
     });
+
+    describe("favouriteMovie()", () => {
+        it("should throw if no movies watched", () => {
+            expect(() => christmas.favouriteMovie()).to.throw('You have not watched a movie yet this year!');
+        });
+
+        it("should return the most watched movie", () => {
+            christmas.buyMovie('Home Alone', ['Macaulay Culkin']);
+            christmas.buyMovie('Last Christmas', ['Actor1']);
+            christmas.watchMovie('Home Alone');
+            christmas.watchMovie('Home Alone');
+            christmas.watchMovie('Last Christmas');
+            let result = christmas.favouriteMovie();
+            expect(result).to.equal('Your favourite movie is Home Alone and you have watched it 2 times!');
+        });
+    });
 });
