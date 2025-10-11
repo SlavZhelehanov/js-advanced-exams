@@ -51,4 +51,24 @@ describe("ChristmasMovies Class Tests", function () {
             expect(christmas.watched['Home Alone']).to.equal(2);
         });
     });
+
+    describe("discardMovie()", () => {
+        it("should throw if movie is not in collection", () => {
+            expect(() => christmas.discardMovie('Missing')).to.throw('Missing is not at your collection!');
+        });
+
+        it("should throw if movie is not watched", () => {
+            christmas.buyMovie('Home Alone', ['Macaulay Culkin']);
+            expect(() => christmas.discardMovie('Home Alone')).to.throw('Home Alone is not watched!');
+        });
+
+        it("should remove from collection and watched list if watched", () => {
+            christmas.buyMovie('Home Alone', ['Macaulay Culkin']);
+            christmas.watchMovie('Home Alone');
+            let result = christmas.discardMovie('Home Alone');
+            expect(result).to.equal('You just threw away Home Alone!');
+            expect(christmas.movieCollection).to.have.lengthOf(0);
+            expect(christmas.watched).to.not.have.property('Home Alone');
+        });
+    });
 });
